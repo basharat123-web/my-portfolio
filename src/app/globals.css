@@ -20,7 +20,16 @@
   --font-sans: var(--font-inter);
 }
 
+html,
 body {
   background: var(--bg);
   color: var(--fg);
+  overflow-x: hidden;
+  max-width: 100vw;
 }
+
+/* Ensure smooth touch scrolling on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+

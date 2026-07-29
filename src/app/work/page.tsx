@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import HoverRoll from "@/components/HoverRoll";
-import FlipBook3D from "@/components/FlipBook3D";
 
 const ALL_PROJECTS = [
   {
@@ -134,9 +133,6 @@ export default function WorkPage() {
           </motion.div>
         ))}
       </div>
-
-      {/* 3D FLIPBOOK SHOWCASE */}
-      <FlipBook3D />
 
       {/* Back CTA */}
       <div className="mt-16 text-center">

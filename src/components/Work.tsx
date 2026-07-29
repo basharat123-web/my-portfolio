@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import HoverRoll from "./HoverRoll";
-import FlipBook3D from "./FlipBook3D";
 
 const PROJECTS = [
   {
@@ -29,14 +28,14 @@ const PROJECTS = [
 
 export default function Work() {
   return (
-    <section id="work" className="px-6 py-28 border-t border-border">
+    <section id="work" className="px-6 py-20 sm:py-28 border-t border-border">
       <div className="mx-auto max-w-6xl">
-        <div className="flex items-end justify-between mb-14">
+        <div className="flex items-end justify-between mb-10 sm:mb-14">
           <div>
-            <p className="text-sm tracking-widest text-muted uppercase mb-4">
+            <p className="text-xs sm:text-sm tracking-widest text-muted uppercase mb-3">
               Selected Work
             </p>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight max-w-xl">
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight max-w-xl">
               A few things I&apos;ve built
             </h2>
           </div>
@@ -48,7 +47,7 @@ export default function Work() {
           </a>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-6 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {PROJECTS.map((project, i) => (
             <motion.a
               key={project.title}
@@ -80,11 +79,9 @@ export default function Work() {
             </motion.a>
           ))}
         </div>
-
-        {/* 3D FLIPBOOK SHOWCASE AT BOTTOM OF WORK SECTION */}
-        <FlipBook3D />
       </div>
     </section>
   );
 }
+
 
