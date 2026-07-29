@@ -86,8 +86,23 @@ export default function MorphingPortrait() {
       className="z-30 perspective-distant pointer-events-none"
     >
       <div ref={rotatorRef} className="relative w-full h-full transform-3d">
-        <div className="absolute inset-0 rounded-xl overflow-hidden shadow-xl bg-linear-to-b from-fg/70 to-fg backface-hidden" />
-        <div className="absolute inset-0 rounded-xl overflow-hidden shadow-xl bg-linear-to-b from-accent/60 to-accent backface-hidden transform-[rotateY(180deg)]" />
+        {/* Front Face (Hero Section) */}
+        <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-bg-soft border border-border/80 backface-hidden">
+          <img
+            src="/basharat.png"
+            alt="Basharat Hussain"
+            className="w-full h-full object-cover object-top"
+          />
+        </div>
+
+        {/* Back Face (About Section - flipped 180deg) */}
+        <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-bg-soft border border-border/80 backface-hidden transform-[rotateY(180deg)]">
+          <img
+            src="/basharat.png"
+            alt="Basharat Hussain"
+            className="w-full h-full object-cover object-top"
+          />
+        </div>
       </div>
     </div>
   );
