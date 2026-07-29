@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+:root {
+  --bg: #efece4;
+  --bg-soft: #e5e1d6;
+  --fg: #131311;
+  --muted: #6f6d63;
+  --accent: #7c5cfc;
+  --border: #d9d4c6;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
