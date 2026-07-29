@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import HoverRoll from "./HoverRoll";
 
 const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#work" },
-  { label: "Blog", href: "#blog" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/work" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function Navbar() {
