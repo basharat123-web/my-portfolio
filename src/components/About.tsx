@@ -11,7 +11,7 @@ const fadeUp = {
 
 export default function About() {
   return (
-    <section id="about" className="px-6 py-28 md:py-40 border-t border-border">
+    <section id="about" className="px-6 py-14 sm:py-28 md:py-36 border-t border-border">
       <div className="mx-auto max-w-6xl grid md:grid-cols-3 gap-10 md:gap-8 items-center">
         <motion.div
           variants={fadeUp}

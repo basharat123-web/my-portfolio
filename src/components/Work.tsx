@@ -28,7 +28,7 @@ const PROJECTS = [
 
 export default function Work() {
   return (
-    <section id="work" className="px-6 py-20 sm:py-28 border-t border-border">
+    <section id="work" className="px-6 py-14 sm:py-28 border-t border-border">
       <div className="mx-auto max-w-6xl">
         <div className="flex items-end justify-between mb-10 sm:mb-14">
           <div>

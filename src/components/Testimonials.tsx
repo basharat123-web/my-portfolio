@@ -42,7 +42,7 @@ const item = {
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="px-6 py-28 border-t border-border">
+    <section id="testimonials" className="px-6 py-14 sm:py-28 border-t border-border">
       <div className="mx-auto max-w-6xl">
         <p className="text-xs font-bold tracking-widest text-muted uppercase mb-3">
           TESTIMONIALS & CASE FILES
@@ -50,7 +50,7 @@ export default function Testimonials() {
         <h2 className="text-3xl sm:text-5xl font-bold tracking-tight max-w-xl mb-4">
           What people say
         </h2>
-        <p className="text-muted text-sm sm:text-base max-w-md mb-14">
+        <p className="text-muted text-sm sm:text-base max-w-md mb-8 sm:mb-14">
           Interactive document folders containing client feedback and verified project reports. Hover or click a file to open.
         </p>
 

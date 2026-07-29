@@ -71,7 +71,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="px-6 py-20 md:py-28 border-t border-border">
+    <section id="contact" className="px-6 py-12 sm:py-20 md:py-28 border-t border-border">
       <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
         {/* Left Side: Content & Social Icons */}
         <motion.div

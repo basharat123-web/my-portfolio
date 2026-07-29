@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import HoverRoll from "./HoverRoll";
 
 const NAV_LINKS = [
@@ -12,27 +11,28 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-
   return (
     <motion.header
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-6 inset-x-0 z-50 flex justify-center px-6"
+      className="fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none"
     >
-      {/* Desktop: full horizontal pill, links always visible */}
-      <div className="hidden md:flex items-center gap-1 rounded-full bg-fg text-bg pl-6 pr-2 py-2 shadow-lg">
-        <a href="#top" className="text-sm font-semibold whitespace-nowrap pr-6">
+      {/* Same horizontal floating pill on both PC and Mobile */}
+      <div className="pointer-events-auto flex items-center gap-1 sm:gap-2 rounded-full bg-fg text-bg pl-4 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 shadow-2xl max-w-[98vw] overflow-x-auto scrollbar-none">
+        <a
+          href="/#top"
+          className="text-xs sm:text-sm font-bold whitespace-nowrap pr-2 sm:pr-4 shrink-0 hover:opacity-85 transition-opacity"
+        >
           Basharat Hussain
         </a>
 
-        <nav className="flex items-center gap-1">
+        <nav className="flex items-center gap-0.5 sm:gap-1 shrink-0">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="rounded-full px-4 py-2 text-sm hover:bg-bg/20 transition-colors"
+              className="rounded-full px-2.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm hover:bg-bg/20 transition-colors whitespace-nowrap"
             >
               <HoverRoll>{link.label}</HoverRoll>
             </a>
@@ -40,80 +40,12 @@ export default function Navbar() {
         </nav>
 
         <a
-          href="#contact"
-          className="ml-2 rounded-full bg-bg text-fg px-5 py-2.5 text-sm font-medium hover:opacity-85 transition-opacity"
+          href="/#contact"
+          className="ml-1 sm:ml-2 rounded-full bg-bg text-fg px-3 sm:px-5 py-1.5 sm:py-2.5 text-xs sm:text-sm font-medium hover:opacity-85 transition-opacity whitespace-nowrap shrink-0"
         >
           <HoverRoll>Contact Me</HoverRoll>
         </a>
       </div>
-
-      {/* Mobile: compact pill that expands into a stacked menu */}
-      <motion.div
-        layout
-        transition={{ layout: { duration: 0.45, ease: [0.76, 0, 0.24, 1] } }}
-        className="md:hidden w-64 max-w-full rounded-[28px] bg-fg text-bg shadow-lg overflow-hidden"
-      >
-        <div className="flex items-center justify-between gap-3 pl-5 pr-2 py-2">
-          <a href="#top" className="text-sm font-semibold whitespace-nowrap">
-            Basharat Hussain
-          </a>
-
-          <button
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-bg text-fg hover:opacity-80 transition-opacity"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              {open ? (
-                <motion.span
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
-                  className="absolute text-lg leading-none"
-                >
-                  &times;
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="dots"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
-                  className="absolute text-lg leading-none"
-                >
-                  &#8942;
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
-        </div>
-
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25, delay: open ? 0.15 : 0 }}
-              className="flex flex-col gap-2 px-3 pb-3"
-            >
-              {[...NAV_LINKS, { label: "Contact", href: "#contact" }].map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block w-full rounded-full bg-bg text-fg text-sm font-medium px-4 py-2.5 text-center hover:opacity-80 transition-opacity"
-                >
-                  <HoverRoll>{link.label}</HoverRoll>
-                </a>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
     </motion.header>
   );
 }

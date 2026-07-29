@@ -79,9 +79,9 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-border overflow-hidden bg-bg text-fg">
       {/* Main Footer Content Container */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-16 pb-12">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-10 sm:pt-16 pb-8 sm:pb-12">
         {/* Top Grid Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 pb-10 sm:pb-16">
           {/* Left Column: Brand & Description */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>

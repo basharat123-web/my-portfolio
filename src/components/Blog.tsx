@@ -22,12 +22,12 @@ const POSTS = [
 
 export default function Blog() {
   return (
-    <section id="blog" className="px-6 py-28 border-t border-border">
+    <section id="blog" className="px-6 py-14 sm:py-28 border-t border-border">
       <div className="mx-auto max-w-6xl">
-        <p className="text-sm tracking-widest text-muted uppercase mb-4">
+        <p className="text-xs sm:text-sm tracking-widest text-muted uppercase mb-3">
           Thoughts
         </p>
-        <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight max-w-xl mb-14">
+        <h2 className="text-3xl sm:text-5xl font-bold tracking-tight max-w-xl mb-8 sm:mb-14">
           Writing, occasionally
         </h2>
 
