@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import HoverRoll from "@/components/HoverRoll";
+import FlipBook3D from "@/components/FlipBook3D";
 
 const ALL_PROJECTS = [
   {
@@ -80,7 +81,7 @@ export default function WorkPage() {
       </motion.div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
         {ALL_PROJECTS.map((project, index) => (
           <motion.div
             key={project.title}
@@ -134,6 +135,9 @@ export default function WorkPage() {
         ))}
       </div>
 
+      {/* 3D FLIPBOOK SHOWCASE */}
+      <FlipBook3D />
+
       {/* Back CTA */}
       <div className="mt-16 text-center">
         <a
@@ -146,3 +150,4 @@ export default function WorkPage() {
     </main>
   );
 }
+

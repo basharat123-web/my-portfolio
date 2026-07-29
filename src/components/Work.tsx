@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import HoverRoll from "./HoverRoll";
+import FlipBook3D from "./FlipBook3D";
 
 const PROJECTS = [
   {
@@ -40,18 +41,18 @@ export default function Work() {
             </h2>
           </div>
           <a
-            href="#"
+            href="/work"
             className="hidden sm:inline text-sm text-muted hover:text-accent transition-colors"
           >
             <HoverRoll>View all work →</HoverRoll>
           </a>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 gap-6 mb-20">
           {PROJECTS.map((project, i) => (
             <motion.a
               key={project.title}
-              href="#"
+              href="/work"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -79,7 +80,11 @@ export default function Work() {
             </motion.a>
           ))}
         </div>
+
+        {/* 3D FLIPBOOK SHOWCASE AT BOTTOM OF WORK SECTION */}
+        <FlipBook3D />
       </div>
     </section>
   );
 }
+
