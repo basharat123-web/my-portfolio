@@ -50,6 +50,16 @@ const ALL_PROJECTS = [
     url: "https://shoqkibat.com",
   },
   {
+    slug: "autonomous-ai-assistant-openclaw",
+    title: "Autonomous AI Assistant",
+    subtitle: "WhatsApp Automation & Localized LLM Agent",
+    date: "May 2026",
+    image: "/projects/yarana/screenshot-5.jpg",
+    bgGradient: "from-[#22543d] via-[#1c4532] to-[#1a202c]",
+    description:
+      "Engineered a localized automated WhatsApp chat agent using the OpenClaw framework with zero-latency model endpoints and persona rules.",
+  },
+  {
     slug: "bh-tech-hub-saas-migration",
     title: "BH Tech Hub Platform",
     subtitle: "Next.js SaaS Migration & Technical SEO",
@@ -76,11 +86,11 @@ export default function WorkPage() {
           All Projects
         </h1>
         <p className="text-muted text-base sm:text-xl max-w-2xl leading-relaxed">
-          Full-stack web applications, custom SaaS architectures, desktop utilities, and client platforms built by Basharat Hussain.
+          Full-stack web applications, custom SaaS architectures, AI automation tools, and client platforms built by Basharat Hussain.
         </p>
       </motion.div>
 
-      {/* Projects Grid */}
+      {/* Projects Grid matching Clean Smooth Motion Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12 mb-16">
         {ALL_PROJECTS.map((project, index) => (
           <motion.a
@@ -93,7 +103,7 @@ export default function WorkPage() {
             whileHover={{ y: -8 }}
             className="group block cursor-pointer"
           >
-            {/* Image Container */}
+            {/* Borderless Smooth Gradient Backdrop & Image Container */}
             <div
               className={`relative aspect-[16/10] w-full rounded-[24px] sm:rounded-[32px] bg-gradient-to-br ${project.bgGradient} p-3 sm:p-5 overflow-hidden shadow-lg transition-all duration-500 group-hover:shadow-2xl`}
             >
