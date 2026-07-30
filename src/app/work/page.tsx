@@ -21,7 +21,7 @@ const ALL_PROJECTS = [
     title: "ABS24 News Network",
     subtitle: "Custom PHP Urdu News Portal & Live Ticker",
     date: "2025",
-    image: "/projects/yarana/screenshot-2.jpg",
+    image: "/projects/abs24-news-portal/screenshot-1.jpg",
     bgGradient: "from-[#742a2a] via-[#9b2c2c] to-[#1a202c]",
     description:
       "Custom PHP theme built from scratch for a full Urdu news network. Handles breaking news tickers, category management, and native RTL typography.",

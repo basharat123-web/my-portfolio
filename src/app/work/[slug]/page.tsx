@@ -73,8 +73,6 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
       "/projects/abs24-news-portal/screenshot-2.jpg",
       "/projects/abs24-news-portal/screenshot-3.jpg",
       "/projects/abs24-news-portal/screenshot-4.jpg",
-      "/projects/abs24-news-portal/screenshot-5.jpg",
-      "/projects/abs24-news-portal/screenshot-6.jpg",
     ],
     description:
       "Custom PHP theme built from scratch for a full Urdu news network. Handles breaking news, live breaking news ticker, categories, and social media integration.",

@@ -17,7 +17,7 @@ const PROJECTS = [
     slug: "abs24-news-portal",
     title: "ABS24 News Network",
     subtitle: "Custom PHP Urdu News Portal & Live Ticker",
-    image: "/projects/yarana/screenshot-2.jpg",
+    image: "/projects/abs24-news-portal/screenshot-1.jpg",
     bgGradient: "from-[#742a2a] via-[#9b2c2c] to-[#1a202c]",
     url: "https://abs24news.com",
   },
