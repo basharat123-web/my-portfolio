@@ -13,15 +13,44 @@ export default function Contact() {
     project: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/basharat81253@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.project,
+          _subject: `New Portfolio Contact Form Inquiry from ${formData.name}`,
+          _template: "table",
+        }),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        setFormData({ name: "", email: "", project: "" });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        // Fallback to mailto link
+        window.location.href = `mailto:basharat81253@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(formData.name)}&body=Name: ${encodeURIComponent(formData.name)}%0D%0AEmail: ${encodeURIComponent(formData.email)}%0D%0AMessage: ${encodeURIComponent(formData.project)}`;
+        setSubmitted(true);
+        setFormData({ name: "", email: "", project: "" });
+      }
+    } catch (err) {
+      // Fallback on network error
+      window.location.href = `mailto:basharat81253@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(formData.name)}&body=Name: ${encodeURIComponent(formData.name)}%0D%0AEmail: ${encodeURIComponent(formData.email)}%0D%0AMessage: ${encodeURIComponent(formData.project)}`;
       setSubmitted(true);
       setFormData({ name: "", email: "", project: "" });
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 800);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const socialLinks = [
