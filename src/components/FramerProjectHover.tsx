@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { playHoverSound, playClickSound } from "@/utils/sound";
 
 interface ProjectItem {
   id: string;
@@ -50,14 +51,6 @@ const PROJECTS: ProjectItem[] = [
   {
     id: "05",
     number: "05",
-    title: "OpenClaw AI",
-    subtitle: "WhatsApp Automation & Localized LLM Agent",
-    slug: "autonomous-ai-assistant-openclaw",
-    image: "/projects/yarana/screenshot-5.jpg",
-  },
-  {
-    id: "06",
-    number: "06",
     title: "BH Tech Hub",
     subtitle: "Next.js SaaS Migration & Technical SEO",
     slug: "bh-tech-hub-saas-migration",
@@ -71,7 +64,7 @@ export default function FramerProjectHover() {
 
   return (
     <div className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-black border border-border shadow-2xl min-h-[540px] sm:min-h-[600px] flex flex-col justify-between select-none">
-      {/* Full-Bleed Dynamic Background Image Layer (Spans full component) */}
+      {/* Full-Bleed Dynamic Background Image Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
@@ -90,7 +83,6 @@ export default function FramerProjectHover() {
               sizes="100vw"
               className="object-cover object-top"
             />
-            {/* Dark Gradient Overlay for Readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           </motion.div>
         </AnimatePresence>
@@ -99,6 +91,8 @@ export default function FramerProjectHover() {
         <div className="absolute top-6 right-6 z-20 flex items-center justify-end">
           <Link
             href={`/work/${activeProject.slug}`}
+            onClick={playClickSound}
+            onMouseEnter={playHoverSound}
             className="w-10 h-10 rounded-xl bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all shadow-lg"
           >
             ↗
@@ -121,6 +115,8 @@ export default function FramerProjectHover() {
 
           <Link
             href={`/work/${activeProject.slug}`}
+            onClick={playClickSound}
+            onMouseEnter={playHoverSound}
             className="inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-2.5 text-xs font-semibold hover:bg-accent transition-colors shadow-md shrink-0"
           >
             View Project Details →
@@ -128,7 +124,7 @@ export default function FramerProjectHover() {
         </div>
       </div>
 
-      {/* LEFT NAVIGATION MENU STACK WITH HORIZONTAL EXPAND/SLIDE MOTION (Exact match to Framer screenshot!) */}
+      {/* LEFT NAVIGATION MENU STACK WITH HORIZONTAL EXPAND/SLIDE MOTION */}
       <div className="relative z-20 w-full md:w-[44%] lg:w-[38%] flex flex-col h-full items-start divide-y divide-black/10">
         {PROJECTS.map((project, idx) => {
           const isActive = activeIndex === idx;
@@ -136,8 +132,14 @@ export default function FramerProjectHover() {
           return (
             <motion.div
               key={project.id}
-              onMouseEnter={() => setActiveIndex(idx)}
-              onClick={() => setActiveIndex(idx)}
+              onMouseEnter={() => {
+                setActiveIndex(idx);
+                playHoverSound();
+              }}
+              onClick={() => {
+                setActiveIndex(idx);
+                playClickSound();
+              }}
               animate={{
                 width: isActive ? "100%" : "62%",
               }}
@@ -153,12 +155,10 @@ export default function FramerProjectHover() {
               }`}
             >
               <div>
-                {/* Number */}
                 <span className="text-[11px] font-mono text-black/40 block mb-1">
                   {project.number}
                 </span>
 
-                {/* Title & Arrow */}
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="text-xl sm:text-2xl font-serif tracking-tight text-black font-semibold truncate">
                     {project.title}
