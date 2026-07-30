@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import HoverRoll from "./HoverRoll";
 
 const SERVICES = [
   {
@@ -41,6 +40,17 @@ const AUTOPLAY_MS = 4000;
 export default function ServiceCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Safe client-side window width detection to prevent hydration mismatch
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     if (paused) return;
@@ -54,17 +64,17 @@ export default function ServiceCarousel() {
   const prev = () => setActiveIndex((i) => (i - 1 + COUNT) % COUNT);
 
   // Swipe / Drag Handler
-  const handleDragEnd = (event: unknown, info: { offset: { x: number } }) => {
-    if (info.offset.x < -40) {
+  const handleDragEnd = (_event: unknown, info: { offset: { x: number } }) => {
+    if (info.offset.x < -30) {
       next();
-    } else if (info.offset.x > 40) {
+    } else if (info.offset.x > 30) {
       prev();
     }
   };
 
   return (
     <div
-      className="relative w-full overflow-hidden py-4 select-none"
+      className="relative w-full overflow-hidden py-2 select-none"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -73,7 +83,7 @@ export default function ServiceCarousel() {
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
         onDragEnd={handleDragEnd}
-        className="relative h-[360px] sm:h-[400px] flex items-center justify-center cursor-grab active:cursor-grabbing touch-pan-y"
+        className="relative h-[290px] sm:h-[380px] flex items-center justify-center cursor-grab active:cursor-grabbing touch-pan-y"
         style={{ perspective: "1000px" }}
       >
         <AnimatePresence initial={false}>
@@ -87,19 +97,21 @@ export default function ServiceCarousel() {
 
             if (!isVisible) return null;
 
+            const spacing = isMobile ? 150 : 250;
+
             return (
               <motion.div
                 key={service.title}
                 initial={false}
                 animate={{
-                  x: offset * (typeof window !== "undefined" && window.innerWidth < 640 ? 170 : 260),
-                  z: isActive ? 0 : -140,
-                  rotateY: offset * -28,
-                  scale: isActive ? 1 : 0.86,
-                  opacity: isActive ? 1 : 0.45,
+                  x: offset * spacing,
+                  z: isActive ? 0 : -120,
+                  rotateY: offset * -25,
+                  scale: isActive ? 1 : 0.85,
+                  opacity: isActive ? 1 : 0.4,
                 }}
                 transition={{ type: "spring", stiffness: 260, damping: 26 }}
-                className="absolute w-[270px] sm:w-[320px] h-[330px] sm:h-[360px] rounded-3xl border border-border bg-bg-soft p-6 flex flex-col justify-between shadow-2xl overflow-hidden backdrop-blur-md"
+                className="absolute w-[250px] sm:w-[320px] h-[270px] sm:h-[350px] rounded-2xl sm:rounded-3xl border border-border bg-bg-soft p-4 sm:p-6 flex flex-col justify-between shadow-xl overflow-hidden backdrop-blur-md"
                 style={{
                   zIndex: COUNT - Math.abs(offset),
                   pointerEvents: isActive ? "auto" : "none",
@@ -108,30 +120,30 @@ export default function ServiceCarousel() {
               >
                 <div>
                   {/* Category Pill */}
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="text-[10px] font-mono font-bold tracking-widest text-accent bg-accent/10 px-2.5 py-1 rounded-md border border-accent/15 uppercase">
+                  <div className="flex items-center justify-between gap-2 mb-2.5 sm:mb-4">
+                    <span className="text-[9px] sm:text-[10px] font-mono font-bold tracking-wider text-accent bg-accent/10 px-2 py-0.5 sm:py-1 rounded-md border border-accent/15 uppercase">
                       {service.category}
                     </span>
-                    <span className="text-xs font-mono text-muted">0{i + 1} / 0{COUNT}</span>
+                    <span className="text-[10px] sm:text-xs font-mono text-muted">0{i + 1} / 0{COUNT}</span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-fg mb-3 leading-tight">
+                  <h3 className="text-base sm:text-2xl font-bold text-fg mb-2 sm:mb-3 leading-snug">
                     {service.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-muted text-xs sm:text-sm leading-relaxed mb-6">
+                  <p className="text-muted text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-3">
                     {service.description}
                   </p>
                 </div>
 
                 {/* Tags Footer */}
-                <div className="pt-4 border-t border-border/60 flex flex-wrap gap-1.5 mt-auto">
+                <div className="pt-3 border-t border-border/60 flex flex-wrap gap-1 mt-auto">
                   {service.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[10px] font-medium rounded-lg border border-border bg-bg px-2.5 py-1 text-muted/90"
+                      className="text-[9px] sm:text-[10px] font-medium rounded-md sm:rounded-lg border border-border bg-bg px-2 py-0.5 text-muted/90"
                     >
                       {tag}
                     </span>
@@ -144,16 +156,16 @@ export default function ServiceCarousel() {
       </motion.div>
 
       {/* Swipe Hint for Mobile & Touch Devices */}
-      <div className="text-center mt-2 mb-4 text-[10px] font-mono text-muted/60 uppercase tracking-widest sm:hidden">
+      <div className="text-center mt-1 mb-3 text-[9px] font-mono text-muted/60 uppercase tracking-wider sm:hidden">
         ← Swipe left / right to move cards →
       </div>
 
       {/* Navigation Controls & Progress Dots */}
-      <div className="flex items-center justify-center gap-4 mt-4">
+      <div className="flex items-center justify-center gap-4 mt-2">
         <button
           onClick={prev}
           aria-label="Previous Service"
-          className="h-10 w-10 rounded-full border border-border bg-bg-soft text-fg flex items-center justify-center hover:border-fg hover:bg-fg hover:text-bg transition-all shadow-sm cursor-pointer"
+          className="h-9 w-9 sm:h-10 sm:w-10 rounded-full border border-border bg-bg-soft text-fg flex items-center justify-center hover:border-fg hover:bg-fg hover:text-bg transition-all shadow-sm cursor-pointer"
         >
           ‹
         </button>
@@ -164,8 +176,8 @@ export default function ServiceCarousel() {
               key={service.title}
               onClick={() => setActiveIndex(i)}
               aria-label={`Go to ${service.title}`}
-              className={`h-2.5 rounded-full transition-all cursor-pointer ${
-                i === activeIndex ? "w-7 bg-accent" : "w-2.5 bg-border hover:bg-muted"
+              className={`h-2 sm:h-2.5 rounded-full transition-all cursor-pointer ${
+                i === activeIndex ? "w-6 sm:w-7 bg-accent" : "w-2 sm:w-2.5 bg-border hover:bg-muted"
               }`}
             />
           ))}
@@ -174,7 +186,7 @@ export default function ServiceCarousel() {
         <button
           onClick={next}
           aria-label="Next Service"
-          className="h-10 w-10 rounded-full border border-border bg-bg-soft text-fg flex items-center justify-center hover:border-fg hover:bg-fg hover:text-bg transition-all shadow-sm cursor-pointer"
+          className="h-9 w-9 sm:h-10 sm:w-10 rounded-full border border-border bg-bg-soft text-fg flex items-center justify-center hover:border-fg hover:bg-fg hover:text-bg transition-all shadow-sm cursor-pointer"
         >
           ›
         </button>
