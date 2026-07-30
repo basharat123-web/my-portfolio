@@ -12,51 +12,77 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       gsap
         .timeline({ defaults: { ease: "power3.out" } })
-        .from(".hero-line", { y: 60, opacity: 0, duration: 0.9, stagger: 0.12 })
+        .from(".hero-line", { y: 50, opacity: 0, duration: 0.9, stagger: 0.12 })
         .from(".hero-icon", { scale: 0, opacity: 0, duration: 0.5, stagger: 0.1 }, "-=0.5")
-        .from(".hero-corner", { opacity: 0, duration: 0.6, stagger: 0.1 }, "-=0.3")
-        .from(".hero-cta", { y: 16, opacity: 0, duration: 0.5, stagger: 0.1 }, "-=0.4");
+        .from(".hero-badge", { y: 20, opacity: 0, duration: 0.5 }, "-=0.3")
+        .from(".hero-cta", { y: 16, opacity: 0, duration: 0.5 }, "-=0.3");
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section id="top" ref={containerRef} className="relative min-h-[85vh] sm:min-h-screen flex flex-col justify-between overflow-hidden pb-16 sm:pb-28">
-      <div className="pt-24 sm:pt-36 px-4 text-center">
-        <div className="relative inline-block">
-          <SparkleIcon className="hero-icon absolute z-10 top-[-5vw] sm:top-[-4vw] lg:-top-14 left-[-5vw] sm:left-[-4vw] lg:-left-16 w-[7vw] sm:w-[5.5vw] lg:w-20 h-[7vw] sm:h-[5.5vw] lg:h-20 -rotate-6" />
-          <BoltIcon className="hero-icon absolute z-10 bottom-[-3vw] sm:bottom-[-2vw] lg:-bottom-6 right-[-4vw] sm:right-[-3.5vw] lg:-right-16 w-[5vw] sm:w-[3.5vw] lg:w-14 h-[6vw] sm:h-[5vw] lg:h-20 rotate-6" />
+    <section
+      id="top"
+      ref={containerRef}
+      className="relative min-h-[90vh] sm:min-h-screen w-full flex flex-col items-center justify-center text-center px-4 sm:px-6 py-20 sm:py-28 overflow-hidden"
+    >
+      {/* Centered Hero Content Container */}
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center justify-center text-center">
+        {/* Availability Badge */}
+        <div className="hero-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border bg-bg-soft/80 backdrop-blur-md text-xs font-mono text-fg mb-6 sm:mb-8 shadow-sm">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span>Available for Freelance & SaaS Projects</span>
+        </div>
 
-          <h1 className="hero-line font-black uppercase leading-[0.88] tracking-tight text-[13vw] sm:text-[9vw] lg:text-[7.5rem]">
+        {/* Headline */}
+        <div className="relative inline-block my-2 sm:my-4">
+          <SparkleIcon className="hero-icon absolute z-10 -top-6 -left-6 sm:-top-10 sm:-left-12 lg:-top-12 lg:-left-16 w-8 h-8 sm:w-14 sm:h-14 lg:w-20 lg:h-20 -rotate-6 text-accent" />
+          <BoltIcon className="hero-icon absolute z-10 -bottom-4 -right-6 sm:-bottom-8 sm:-right-12 lg:-bottom-10 lg:-right-14 w-6 h-6 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rotate-6 text-accent" />
+
+          <h1 className="hero-line font-black uppercase leading-[0.9] tracking-tight text-[12vw] sm:text-[9vw] lg:text-[7.5rem] text-fg">
             Software
           </h1>
-          <h1 className="hero-line font-black uppercase leading-[0.88] tracking-tight text-[13vw] sm:text-[9vw] lg:text-[7.5rem]">
+          <h1 className="hero-line font-black uppercase leading-[0.9] tracking-tight text-[12vw] sm:text-[9vw] lg:text-[7.5rem] text-fg">
             Engineer
           </h1>
         </div>
-      </div>
 
-      <div className="relative sm:absolute left-1/2 -translate-x-1/2 my-8 sm:my-0 sm:bottom-28 z-20 flex justify-center">
-        <div
-          id="hero-photo-anchor"
-          className="w-[140px] sm:w-[clamp(6rem,14vw,15rem)] aspect-3/4"
-        />
-      </div>
+        {/* 3D Document Folder Photo Anchor */}
+        <div className="hero-badge my-6 sm:my-8 flex justify-center items-center w-full">
+          <div
+            id="hero-photo-anchor"
+            className="w-[150px] sm:w-[220px] aspect-3/4 shadow-2xl rounded-2xl transition-transform duration-300 hover:scale-105"
+          />
+        </div>
 
-      <div className="px-6 flex items-center justify-between text-xs sm:text-sm">
-        <p className="hero-corner font-semibold">
-          &copy;2026
+        {/* Subtitle */}
+        <p className="hero-line text-sm sm:text-lg md:text-xl text-muted font-medium max-w-2xl leading-relaxed mt-2 mb-8">
+          Hi, I&apos;m <span className="text-fg font-bold">Basharat Hussain</span>. I build scalable Next.js SaaS platforms, full-stack web applications, and autonomous AI automation agents.
         </p>
-        <p className="hero-corner tracking-widest text-muted uppercase">
-          /Creating since 2020
-        </p>
+
+        {/* Action Buttons */}
+        <div className="hero-cta flex flex-wrap items-center justify-center gap-4">
+          <a
+            href="/#work"
+            className="rounded-full bg-fg text-bg px-7 py-3.5 text-xs sm:text-sm font-semibold hover:opacity-90 transition-all shadow-md"
+          >
+            <HoverRoll>View My Work →</HoverRoll>
+          </a>
+          <a
+            href="/#contact"
+            className="rounded-full border border-border bg-bg-soft text-fg px-7 py-3.5 text-xs sm:text-sm font-semibold hover:border-fg transition-all shadow-sm"
+          >
+            <HoverRoll>Let&apos;s Talk</HoverRoll>
+          </a>
+        </div>
       </div>
 
-      <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40 flex flex-col gap-1.5 sm:gap-2 items-end">
+      {/* Floating View Work Sticky Button */}
+      <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40">
         <a
           href="/#work"
-          className="hero-cta rounded-full bg-fg text-bg px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium hover:opacity-85 transition-opacity shadow-lg"
+          className="hero-cta rounded-full bg-fg text-bg px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity shadow-xl"
         >
           <HoverRoll>View My Work</HoverRoll>
         </a>
