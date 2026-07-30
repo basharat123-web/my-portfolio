@@ -59,14 +59,6 @@ export default function Footer() {
 
   const navColumns = [
     {
-      title: "PRODUCT",
-      links: [
-        { label: "Components", href: "/documentation" },
-        { label: "Templates", href: "/documentation" },
-        { label: "Pricing", href: "/support" },
-      ],
-    },
-    {
       title: "COMPANY",
       links: [
         { label: "About", href: "/about" },
@@ -131,7 +123,7 @@ export default function Footer() {
           </div>
 
           {/* Right Columns: Navigation Links Grid */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-8">
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
             {navColumns.map((col) => (
               <div key={col.title}>
                 <h4 className="text-[11px] font-semibold tracking-wider text-muted/70 uppercase mb-4">
