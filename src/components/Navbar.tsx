@@ -29,12 +29,13 @@ export default function Navbar() {
       className="fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center px-4"
     >
       {/* 1. DESKTOP NAVBAR: Full Horizontal Pill */}
-      <div className="hidden md:flex items-center gap-1 rounded-full bg-fg text-bg pl-6 pr-2 py-2 shadow-2xl">
+      <div className="hidden md:flex items-center gap-1 rounded-full bg-fg text-bg pl-3 pr-2 py-2 shadow-2xl">
         <a
           href="/#top"
-          className="text-sm font-bold whitespace-nowrap pr-4 hover:opacity-85 transition-opacity"
+          className="flex items-center gap-2.5 text-sm font-bold whitespace-nowrap pr-4 hover:opacity-85 transition-opacity"
         >
-          Basharat Hussain
+          <img src="/logo.png" alt="BH Logo" className="w-7 h-7 rounded-full bg-white p-0.5 object-contain shadow-sm" />
+          <span>Basharat Hussain</span>
         </a>
 
         <nav className="flex items-center gap-1">
@@ -70,12 +71,13 @@ export default function Navbar() {
       {/* 2. MOBILE NAVBAR: Sleek Compact Pill with Floating Dropdown Box */}
       <div className="md:hidden flex flex-col items-center w-full max-w-[340px]">
         {/* Main Floating Mobile Pill */}
-        <div className="w-full flex items-center justify-between gap-3 rounded-full bg-fg text-bg px-5 py-2.5 shadow-2xl border border-white/10">
+        <div className="w-full flex items-center justify-between gap-3 rounded-full bg-fg text-bg px-4 py-2 shadow-2xl border border-white/10">
           <a
             href="/#top"
-            className="text-sm font-bold tracking-tight whitespace-nowrap"
+            className="flex items-center gap-2 text-sm font-bold tracking-tight whitespace-nowrap"
           >
-            Basharat Hussain
+            <img src="/logo.png" alt="BH Logo" className="w-6 h-6 rounded-full bg-white p-0.5 object-contain shadow-sm" />
+            <span>Basharat Hussain</span>
           </a>
 
           {/* Toggle Button for Dropdown */}

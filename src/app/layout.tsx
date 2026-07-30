@@ -15,6 +15,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Basharat Hussain — Full-Stack Web Developer & Software Engineer",
   description: "Full-Stack Web Developer and Software Engineer specializing in Next.js, React, TypeScript, Node.js, MERN stack, AI automation, and scalable SaaS architectures.",
+  icons: {
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
