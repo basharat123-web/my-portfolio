@@ -7,56 +7,49 @@ import HoverRoll from "./HoverRoll";
 const PROJECTS = [
   {
     slug: "yarana-nal-baharan-pigeon-club",
-    title: "Yarana Nal Baharan Pigeon Club",
-    category: "INTERNATIONAL CLIENT — GREECE 🇬🇷",
-    description:
-      "Real-time pigeon race tracking & club management system with live leaderboards, viewer counters, and weather integration.",
-    tags: ["PHP", "MySQL", "Real-time", "Greece 🇬🇷"],
-    image: "/projects/yarana.jpg",
+    title: "Yarana Nal Baharan",
+    subtitle: "Real-Time Pigeon Race Tracking • Greece 🇬🇷",
+    image: "/projects/yarana/screenshot-1.jpg",
+    bgGradient: "from-[#1a365d] via-[#2a4365] to-[#1a202c]",
     url: "https://yarannalbaharan.com",
   },
   {
     slug: "abs24-news-portal",
     title: "ABS24 News Network",
-    category: "WORDPRESS NEWS PORTAL",
-    description:
-      "Custom PHP theme built from scratch for a full Urdu news network with live breaking news ticker and RTL font optimization.",
-    tags: ["WordPress", "Custom PHP", "Urdu CMS"],
+    subtitle: "Custom PHP Urdu News Portal & Live Ticker",
+    image: "/projects/yarana/screenshot-2.jpg",
+    bgGradient: "from-[#742a2a] via-[#9b2c2c] to-[#1a202c]",
     url: "https://abs24news.com",
   },
   {
     slug: "axiom-research-group",
     title: "Axiom Research Group",
-    category: "CORPORATE WEBSITE",
-    description:
-      "Professional corporate website for a global market research & consulting firm with survey portals and case studies.",
-    tags: ["HTML5", "CSS3", "JavaScript", "PHP"],
+    subtitle: "Corporate Market Analytics & Survey Portal",
+    image: "/projects/yarana/screenshot-3.jpg",
+    bgGradient: "from-[#2b6cb0] via-[#2c5282] to-[#1a202c]",
     url: "https://www.axiomresearchgroup.site",
   },
   {
     slug: "shoq-ki-baat-live-tracking",
-    title: "Shoq Ki Baat Live Tracking",
-    category: "LIVE TRACKING SYSTEM",
-    description:
-      "Live pigeon race tracking & tournament management system with real-time leaderboard rankings and automated score calculation.",
-    tags: ["PHP", "MySQL", "Live Data", "Urdu CMS"],
+    title: "Shoq Ki Baat",
+    subtitle: "Live Tournament Leaderboard System",
+    image: "/projects/yarana/screenshot-4.jpg",
+    bgGradient: "from-[#975a16] via-[#744210] to-[#1a202c]",
     url: "https://shoqkibat.com",
   },
   {
     slug: "autonomous-ai-assistant-openclaw",
-    title: "Autonomous AI Assistant (OpenClaw)",
-    category: "AI & AUTOMATION",
-    description:
-      "Localized automated WhatsApp chat agent utilizing OpenClaw framework with zero-latency model endpoints and persona rules.",
-    tags: ["OpenClaw", "WhatsApp AI", "Node.js"],
+    title: "Autonomous AI Assistant",
+    subtitle: "WhatsApp Automation & Localized LLM Agent",
+    image: "/projects/yarana/screenshot-5.jpg",
+    bgGradient: "from-[#22543d] via-[#1c4532] to-[#1a202c]",
   },
   {
     slug: "bh-tech-hub-saas-migration",
     title: "BH Tech Hub Platform",
-    category: "WEB DEVELOPMENT & SEO",
-    description:
-      "Tech blog & custom SaaS migration from WordPress to Next.js App Router with server-side logic and technical SEO.",
-    tags: ["Next.js", "WordPress Migration", "SEO"],
+    subtitle: "Next.js SaaS Migration & Technical SEO",
+    image: "/projects/yarana/screenshot-6.jpg",
+    bgGradient: "from-[#44337a] via-[#322659] to-[#1a202c]",
     url: "https://bhtechhub.com",
   },
 ];
@@ -66,48 +59,34 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
+      staggerChildren: 0.1,
     },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 24, scale: 0.97 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1.0] as const,
-    },
+    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] as const },
   },
 };
 
 export default function Work() {
   return (
-    <section id="work" className="px-4 sm:px-6 py-12 sm:py-20 border-t border-border">
+    <section id="work" className="px-4 sm:px-6 py-16 sm:py-28 border-t border-border">
       <div className="mx-auto max-w-6xl">
         {/* Section Header */}
-        <div className="flex items-end justify-between mb-8 sm:mb-10">
+        <div className="flex items-end justify-between mb-10 sm:mb-14">
           <div>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-xs font-bold tracking-widest text-muted uppercase mb-2"
-            >
-              SELECTED WORK & PROJECTS
-            </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.05 }}
-              className="text-2xl sm:text-4xl font-bold tracking-tight text-fg"
+              className="text-4xl sm:text-6xl font-bold tracking-tight text-fg"
             >
-              A few things I&apos;ve built
+              Featured Projects
             </motion.h2>
           </div>
           <motion.a
@@ -115,102 +94,57 @@ export default function Work() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="hidden sm:inline-flex items-center text-xs font-semibold text-muted hover:text-fg transition-colors"
+            className="rounded-full border border-border bg-bg-soft px-5 py-2.5 text-xs font-semibold text-fg hover:border-fg transition-all shadow-sm flex items-center gap-1.5"
           >
-            <HoverRoll>View all projects →</HoverRoll>
+            <HoverRoll>View All Work ↗</HoverRoll>
           </motion.a>
         </div>
 
-        {/* 3-Column Grid with Project Image Cards & Stagger */}
+        {/* 2-Column Grid matching Majd Reference Layout */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10"
         >
           {PROJECTS.map((project) => (
             <motion.a
               key={project.slug}
               href={`/work/${project.slug}`}
               variants={cardVariants}
-              whileHover={{ y: -6, scale: 1.01 }}
-              whileTap={{ scale: 0.98 }}
-              className="group flex flex-col justify-between rounded-3xl border border-border bg-bg-soft overflow-hidden shadow-sm hover:shadow-2xl hover:border-fg/30 transition-all duration-300 relative"
+              whileHover={{ y: -6 }}
+              className="group block cursor-pointer"
             >
-              <div>
-                {/* Project Image Box (Only shown if real image is provided) */}
-                {project.image ? (
-                  <div className="relative aspect-16/10 w-full overflow-hidden bg-border/40">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
-
-                    {/* Category Pill Over Image */}
-                    <div className="absolute top-3 left-3 z-10">
-                      <span className="text-[9px] font-mono font-bold tracking-wider text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20 uppercase">
-                        {project.category}
-                      </span>
-                    </div>
-
-                    <div className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white text-xs group-hover:bg-accent group-hover:text-black transition-colors">
-                      ↗
-                    </div>
-                  </div>
-                ) : null}
-
-                {/* Card Content Body */}
-                <div className="p-6">
-                  {!project.image && (
-                    <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className="text-[10px] font-mono font-bold tracking-wider text-accent bg-accent/10 px-2.5 py-0.5 rounded-md border border-accent/15 uppercase">
-                        {project.category}
-                      </span>
-                      <span className="text-xs text-muted group-hover:text-fg group-hover:translate-x-0.5 transition-all">
-                        ↗
-                      </span>
-                    </div>
-                  )}
-
-                  <h3 className="text-base sm:text-lg font-bold text-fg mb-2 leading-snug group-hover:text-accent transition-colors">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-muted text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">
-                    {project.description}
-                  </p>
+              {/* Image Container with Rounded 3XL Backdrop Gradient */}
+              <div
+                className={`relative aspect-[16/10] w-full rounded-[28px] sm:rounded-[36px] bg-gradient-to-br ${project.bgGradient} p-4 sm:p-7 overflow-hidden shadow-lg border border-border/40 transition-all duration-500 group-hover:shadow-2xl`}
+              >
+                {/* Browser UI Card inside Backdrop */}
+                <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-black shadow-2xl border border-white/15">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
                 </div>
               </div>
 
-              {/* Tags Footer */}
-              <div className="px-6 pb-6 pt-2 flex flex-wrap gap-1.5 mt-auto">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[10px] font-medium rounded-lg border border-border bg-bg px-2.5 py-1 text-muted/90"
-                  >
-                    {tag}
-                  </span>
-                ))}
+              {/* Title & Subtitle Below Card */}
+              <div className="mt-4 px-1">
+                <h3 className="text-xl sm:text-2xl font-bold text-fg group-hover:text-accent transition-colors leading-tight">
+                  {project.title}
+                </h3>
+                <p className="text-muted text-xs sm:text-sm font-medium mt-1">
+                  {project.subtitle}
+                </p>
               </div>
             </motion.a>
           ))}
         </motion.div>
-
-        {/* Mobile View All CTA */}
-        <div className="mt-8 text-center sm:hidden">
-          <a
-            href="/work"
-            className="inline-flex items-center gap-2 rounded-full bg-fg text-bg px-6 py-3 text-xs font-semibold"
-          >
-            <HoverRoll>View all projects →</HoverRoll>
-          </a>
-        </div>
       </div>
     </section>
   );

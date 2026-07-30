@@ -4,7 +4,6 @@ import { use, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import HoverRoll from "@/components/HoverRoll";
-import LaptopMockup3D from "@/components/LaptopMockup3D";
 import { notFound } from "next/navigation";
 
 interface ProjectDetail {
@@ -15,11 +14,13 @@ interface ProjectDetail {
   date: string;
   githubUrl?: string;
   liveUrl?: string;
-  mainImage?: string;
-  gallery?: string[];
+  heroImage: string;
+  bgGradient: string;
+  gallery: string[];
   description: string;
-  problem: string;
-  solution: string;
+  about: string;
+  designSection: string;
+  architecture: string;
   stack: string[];
   features: string[];
 }
@@ -27,12 +28,13 @@ interface ProjectDetail {
 const PROJECTS_DATA: Record<string, ProjectDetail> = {
   "yarana-nal-baharan-pigeon-club": {
     slug: "yarana-nal-baharan-pigeon-club",
-    title: "Yarana Nal Baharan Pigeon Club",
-    subtitle: "Real-time Pigeon Race Tracking & Club Management System",
-    category: "INTERNATIONAL CLIENT — GREECE 🇬🇷",
+    title: "Yarana Nal Baharan",
+    subtitle: "Real-Time Pigeon Race Tracking • Greece 🇬🇷",
+    category: "International Client — Greece 🇬🇷",
     date: "2025",
     liveUrl: "https://yarannalbaharan.com",
-    mainImage: "/projects/yarana/screenshot-1.jpg",
+    heroImage: "/projects/yarana/screenshot-1.jpg",
+    bgGradient: "from-[#1a365d] via-[#2a4365] to-[#1a202c]",
     gallery: [
       "/projects/yarana/screenshot-1.jpg",
       "/projects/yarana/screenshot-2.jpg",
@@ -42,11 +44,13 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
       "/projects/yarana/screenshot-6.jpg",
     ],
     description:
-      "Built remotely for an international client based in Greece. Features a live pigeon race tracking & club management system with real-time leaderboards, pigeon count statistics, live viewer counters, Facebook integration, and live weather widgets.",
-    problem:
-      "The pigeon racing club needed an online platform to track live race results across multiple international participants in real-time without server delays or leaderboard sync issues.",
-    solution:
+      "Engineered remotely for an international client based in Greece. Features a live pigeon race tracking & club management system with real-time leaderboards, viewer counters, Facebook integration, and live weather widgets.",
+    about:
+      "The client needed an online platform to track live race results across multiple international participants in real-time without server delays or leaderboard sync issues on high-traffic flying days.",
+    designSection:
       "Developed a custom PHP and MySQL web application with automated database polling and real-time frontend updates to display live tournament leaderboards, pigeon status, and weather forecasts.",
+    architecture:
+      "Component-based PHP architecture connected to MySQL database with automated query caching and responsive mobile leaderboard design.",
     stack: ["PHP", "MySQL", "JavaScript", "Real-time Polling", "Facebook API", "Weather API"],
     features: [
       "Real-time leaderboard & live pigeon status updates",
@@ -59,15 +63,27 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
     slug: "abs24-news-portal",
     title: "ABS24 News Network",
     subtitle: "Custom PHP Urdu News Portal & Live Ticker",
-    category: "WORDPRESS NEWS PORTAL",
+    category: "WordPress News Portal",
     date: "2025",
     liveUrl: "https://abs24news.com",
+    heroImage: "/projects/abs24-news-portal/screenshot-1.jpg",
+    bgGradient: "from-[#742a2a] via-[#9b2c2c] to-[#1a202c]",
+    gallery: [
+      "/projects/abs24-news-portal/screenshot-1.jpg",
+      "/projects/abs24-news-portal/screenshot-2.jpg",
+      "/projects/abs24-news-portal/screenshot-3.jpg",
+      "/projects/abs24-news-portal/screenshot-4.jpg",
+      "/projects/abs24-news-portal/screenshot-5.jpg",
+      "/projects/abs24-news-portal/screenshot-6.jpg",
+    ],
     description:
-      "Custom PHP theme built from scratch for a full Urdu news network. Handles breaking news, live breaking news ticker, categories, and social media integration for daily readers in Pakistan and abroad.",
-    problem:
-      "Off-the-shelf WordPress news themes were slow, bloated with unused code, and failed to support proper right-to-left (RTL) Urdu font rendering and breaking news tickers.",
-    solution:
+      "Custom PHP theme built from scratch for a full Urdu news network. Handles breaking news, live breaking news ticker, categories, and social media integration.",
+    about:
+      "Off-the-shelf WordPress news themes were slow and bloated with unused code. The news network needed a custom theme optimized for Urdu RTL typography and high traffic.",
+    designSection:
       "Engineered a lightweight custom WordPress PHP theme with optimized database queries, custom Gutenberg blocks, and native Urdu font typography.",
+    architecture:
+      "Lightweight custom PHP theme, custom query loops, and RTL font optimization for seamless reading experience across desktop and mobile devices.",
     stack: ["WordPress", "Custom PHP Theme", "MySQL", "JavaScript", "Urdu RTL"],
     features: [
       "Custom PHP WordPress theme engineered from scratch",
@@ -79,16 +95,28 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
   "axiom-research-group": {
     slug: "axiom-research-group",
     title: "Axiom Research Group",
-    subtitle: "Global Market Research & Consulting Platform",
-    category: "CORPORATE WEBSITE",
+    subtitle: "Global Market Analytics & Survey Portal",
+    category: "Corporate Website",
     date: "2025",
     liveUrl: "https://www.axiomresearchgroup.site",
+    heroImage: "/projects/axiom-research-group/screenshot-1.jpg",
+    bgGradient: "from-[#2b6cb0] via-[#2c5282] to-[#1a202c]",
+    gallery: [
+      "/projects/axiom-research-group/screenshot-1.jpg",
+      "/projects/axiom-research-group/screenshot-2.jpg",
+      "/projects/axiom-research-group/screenshot-3.jpg",
+      "/projects/axiom-research-group/screenshot-4.jpg",
+      "/projects/axiom-research-group/screenshot-5.jpg",
+      "/projects/axiom-research-group/screenshot-6.jpg",
+    ],
     description:
-      "Professional corporate website for a global market research & consulting firm. Serves clients across multiple countries with a survey portal, case studies, and client showcase.",
-    problem:
+      "Professional corporate website for a global market research & consulting firm. Serves clients across multiple countries with survey portals and case study showcases.",
+    about:
       "The market research firm required a professional, high-trust corporate portal to present research case studies, client testimonials, and capture business survey leads.",
-    solution:
+    designSection:
       "Designed and coded a fast, responsive corporate website using clean HTML5, CSS3, JavaScript, and a secure PHP contact & survey inquiry handler.",
+    architecture:
+      "Clean modular HTML5/CSS3 architecture with optimized asset loading, responsive grid layouts, and secure form validation.",
     stack: ["HTML5", "CSS3", "JavaScript", "PHP", "Corporate Architecture"],
     features: [
       "Responsive multi-page corporate architecture",
@@ -99,17 +127,29 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
   },
   "shoq-ki-baat-live-tracking": {
     slug: "shoq-ki-baat-live-tracking",
-    title: "Shoq Ki Baat Live Tracking",
-    subtitle: "Tournament Management & Real-time Leaderboard",
-    category: "LIVE TRACKING SYSTEM",
+    title: "Shoq Ki Baat",
+    subtitle: "Live Tournament Leaderboard System",
+    category: "Live Tracking System",
     date: "2025",
     liveUrl: "https://shoqkibat.com",
+    heroImage: "/projects/shoq-ki-baat-live-tracking/screenshot-1.jpg",
+    bgGradient: "from-[#975a16] via-[#744210] to-[#1a202c]",
+    gallery: [
+      "/projects/shoq-ki-baat-live-tracking/screenshot-1.jpg",
+      "/projects/shoq-ki-baat-live-tracking/screenshot-2.jpg",
+      "/projects/shoq-ki-baat-live-tracking/screenshot-3.jpg",
+      "/projects/shoq-ki-baat-live-tracking/screenshot-4.jpg",
+      "/projects/shoq-ki-baat-live-tracking/screenshot-5.jpg",
+      "/projects/shoq-ki-baat-live-tracking/screenshot-6.jpg",
+    ],
     description:
-      "Live pigeon race tracking & tournament management system with real-time leaderboard, pigeon stats, weather integration, and admin panel. Powers active tournaments for hundreds of participants.",
-    problem:
+      "Live pigeon race tracking & tournament management system with real-time leaderboards, pigeon stats, weather integration, and admin scoring panel.",
+    about:
       "Managing large-scale bird flying tournaments manually on paper led to calculation errors and delayed result publishing for tournament participants.",
-    solution:
-      "Automated tournament management by creating a custom PHP/MySQL database system that automatically computes race timings, rankings, and publishes real-time leaderboards online.",
+    designSection:
+      "Automated tournament management by creating a custom PHP/MySQL database system that automatically computes race timings, rankings, and publishes real-time leaderboards.",
+    architecture:
+      "Custom PHP/MySQL database system with real-time scoring algorithms, admin control panels, and weather API integration.",
     stack: ["PHP", "MySQL", "JavaScript", "Urdu CMS", "Weather API"],
     features: [
       "Automated timing calculations & instant leaderboard rankings",
@@ -120,17 +160,29 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
   },
   "autonomous-ai-assistant-openclaw": {
     slug: "autonomous-ai-assistant-openclaw",
-    title: "Autonomous AI Assistant (OpenClaw)",
-    subtitle: "Localized WhatsApp Automated AI Agent",
-    category: "AI & AUTOMATION",
+    title: "Autonomous AI Assistant",
+    subtitle: "WhatsApp Automation & Localized LLM Agent",
+    category: "AI & Automation",
     date: "May 2026",
     githubUrl: "https://github.com/basharathussain",
+    heroImage: "/projects/autonomous-ai-assistant-openclaw/screenshot-1.jpg",
+    bgGradient: "from-[#22543d] via-[#1c4532] to-[#1a202c]",
+    gallery: [
+      "/projects/autonomous-ai-assistant-openclaw/screenshot-1.jpg",
+      "/projects/autonomous-ai-assistant-openclaw/screenshot-2.jpg",
+      "/projects/autonomous-ai-assistant-openclaw/screenshot-3.jpg",
+      "/projects/autonomous-ai-assistant-openclaw/screenshot-4.jpg",
+      "/projects/autonomous-ai-assistant-openclaw/screenshot-5.jpg",
+      "/projects/autonomous-ai-assistant-openclaw/screenshot-6.jpg",
+    ],
     description:
-      "Engineered and deployed a localized automated WhatsApp chat agent utilizing the open-source OpenClaw framework. Configured environment files, localized model endpoints, and specific persona parameters to activate the virtual assistant.",
-    problem:
-      "Small businesses and tech platforms require 24/7 automated customer responses and query handling without paying expensive per-token third-party cloud API costs.",
-    solution:
-      "Integrated OpenClaw framework with local model endpoints and custom system prompt rules. Configured webhook dispatchers to parse incoming WhatsApp messages and dispatch intelligent, zero-latency replies.",
+      "Engineered and deployed a localized automated WhatsApp chat agent utilizing the open-source OpenClaw framework with zero-latency model endpoints.",
+    about:
+      "Small businesses require 24/7 automated customer responses and query handling without paying expensive per-token third-party cloud API costs.",
+    designSection:
+      "Integrated OpenClaw framework with local model endpoints and custom system prompt rules to parse incoming WhatsApp webhooks and dispatch intelligent replies.",
+    architecture:
+      "TypeScript/Node.js webhook architecture with localized open-source model endpoints and automated error recovery queues.",
     stack: ["OpenClaw", "TypeScript", "WhatsApp Webhook", "Node.js", "Localized LLMs"],
     features: [
       "Integrated localized model endpoints for zero API token latency",
@@ -141,18 +193,30 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
   },
   "bh-tech-hub-saas-migration": {
     slug: "bh-tech-hub-saas-migration",
-    title: "BH Tech Hub & B&S Solution Network",
-    subtitle: "Custom SaaS Platform Migration",
-    category: "WEB DEVELOPMENT & SEO",
+    title: "BH Tech Hub Platform",
+    subtitle: "Next.js SaaS Migration & Technical SEO",
+    category: "Web Development & SEO",
     date: "2025 – Present",
     githubUrl: "https://github.com/basharathussain",
     liveUrl: "https://bhtechhub.com",
+    heroImage: "/projects/bh-tech-hub-saas-migration/screenshot-1.jpg",
+    bgGradient: "from-[#44337a] via-[#322659] to-[#1a202c]",
+    gallery: [
+      "/projects/bh-tech-hub-saas-migration/screenshot-1.jpg",
+      "/projects/bh-tech-hub-saas-migration/screenshot-2.jpg",
+      "/projects/bh-tech-hub-saas-migration/screenshot-3.jpg",
+      "/projects/bh-tech-hub-saas-migration/screenshot-4.jpg",
+      "/projects/bh-tech-hub-saas-migration/screenshot-5.jpg",
+      "/projects/bh-tech-hub-saas-migration/screenshot-6.jpg",
+    ],
     description:
-      "Managing comprehensive operations, content strategy, and technical infrastructure. Executing a full technical migration from WordPress to a fully custom-programmed SaaS architecture utilizing advanced server-side logic and database schemas.",
-    problem:
+      "Executing a full technical migration from WordPress to a custom-programmed SaaS architecture utilizing advanced server-side logic and database schemas.",
+    about:
       "Traditional WordPress websites suffer from heavy plugin overhead, slow page load times, and poor mobile search engine indexation.",
-    solution:
-      "Engineered a custom Next.js frontend connected to a high-speed database schema. Configured technical SEO via Google Search Console, Rank Math, and Ahrefs to maximize domain authority.",
+    designSection:
+      "Engineered a custom Next.js frontend connected to a high-speed database schema, configuring technical SEO via Search Console, Rank Math, and Ahrefs.",
+    architecture:
+      "Next.js App Router with React Server Components, TypeScript type safety, dynamic sitemap indexing, and Core Web Vitals optimization.",
     stack: ["Next.js", "WordPress Migration", "SEO Management", "Rank Math", "Ahrefs", "TypeScript"],
     features: [
       "WordPress to Next.js custom SaaS database migration",
@@ -172,10 +236,13 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
+  // Filter out current project to list "More Projects" at bottom
+  const otherProjects = Object.values(PROJECTS_DATA).filter((p) => p.slug !== project.slug).slice(0, 2);
+
   return (
-    <main className="pt-32 pb-28 px-6 max-w-5xl mx-auto min-h-screen">
+    <main className="pt-28 sm:pt-32 pb-24 px-4 sm:px-6 max-w-5xl mx-auto min-h-screen">
       {/* Back Link */}
-      <div className="mb-8">
+      <div className="mb-6">
         <a
           href="/work"
           className="text-xs font-mono font-semibold tracking-wider text-muted uppercase hover:text-fg transition-colors inline-flex items-center gap-2"
@@ -184,159 +251,207 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
         </a>
       </div>
 
-      {/* Header */}
-      <motion.div
+      {/* Main Title */}
+      <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-12 border-b border-border pb-10"
+        transition={{ duration: 0.5 }}
+        className="text-4xl sm:text-7xl font-bold tracking-tight text-fg mb-6 leading-tight"
       >
-        <div className="flex items-center justify-between gap-4 mb-4">
-          <span className="text-xs font-mono font-bold tracking-widest uppercase text-accent bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
-            {project.category}
-          </span>
-          <span className="text-xs font-mono text-muted">{project.date}</span>
+        {project.title}
+      </motion.h1>
+
+      {/* Meta Row & Short Summary (Majd Reference Style) */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start mb-10 pb-8 border-b border-border">
+        <div className="md:col-span-6 flex flex-wrap items-center gap-4 text-xs font-mono">
+          <div>
+            <span className="text-muted uppercase block text-[10px]">Category</span>
+            <span className="font-bold text-fg">{project.category}</span>
+          </div>
+          <div className="h-6 w-px bg-border" />
+          <div>
+            <span className="text-muted uppercase block text-[10px]">Year</span>
+            <span className="font-bold text-fg">{project.date}</span>
+          </div>
+          {project.liveUrl && (
+            <>
+              <div className="h-6 w-px bg-border" />
+              <div>
+                <span className="text-muted uppercase block text-[10px]">Live Site</span>
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-accent hover:underline inline-flex items-center gap-1"
+                >
+                  Visit ↗
+                </a>
+              </div>
+            </>
+          )}
         </div>
 
-        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-fg mb-4 leading-tight">
-          {project.title}
-        </h1>
-        <p className="text-muted text-lg sm:text-xl font-medium max-w-3xl leading-relaxed">
-          {project.subtitle}
-        </p>
+        <div className="md:col-span-6">
+          <p className="text-muted text-sm sm:text-base leading-relaxed">
+            {project.description}
+          </p>
+        </div>
+      </div>
 
-        {/* Action Buttons */}
-        <div className="flex items-center gap-4 mt-8">
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-fg text-bg px-6 py-3 text-xs font-semibold hover:opacity-90 transition-opacity"
-            >
-              <HoverRoll>Live Preview ↗</HoverRoll>
-            </a>
-          )}
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-bg-soft border border-border text-fg px-6 py-3 text-xs font-semibold hover:border-fg transition-colors"
-            >
-              <HoverRoll>View Code ↗</HoverRoll>
-            </a>
-          )}
+      {/* Hero Presentation Banner Image (Majd Reference Style with Vibrant Gradient Backdrop) */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className={`relative aspect-[16/10] w-full rounded-[28px] sm:rounded-[36px] bg-gradient-to-br ${project.bgGradient} p-4 sm:p-8 overflow-hidden shadow-2xl border border-border/40 mb-16`}
+      >
+        <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-black shadow-2xl border border-white/15">
+          <Image
+            src={project.heroImage}
+            alt={project.title}
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 1000px"
+            className="object-cover object-top"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.srcset = "/projects/yarana/screenshot-1.jpg";
+            }}
+          />
         </div>
       </motion.div>
 
-      {/* 3D Laptop Mockup Showcase Section with Mouse & Touch Tilt Interactions */}
-      <div className="mb-16">
-        <LaptopMockup3D
-          url={project.liveUrl}
-          title={project.title}
-          fallbackImage={project.mainImage || "/projects/yarana.jpg"}
-        />
-      </div>
+      {/* Narrative Section 1: About the Project */}
+      <section className="mb-14">
+        <h2 className="text-2xl sm:text-3xl font-bold text-fg mb-4">About the Project</h2>
+        <p className="text-muted text-base sm:text-lg leading-relaxed max-w-3xl">
+          {project.about}
+        </p>
+      </section>
 
-      {/* Overview & Problem / Solution */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
-        <div className="lg:col-span-8 space-y-8">
-          <section className="space-y-3">
-            <h2 className="text-2xl font-bold text-fg">Project Overview</h2>
-            <p className="text-muted text-base leading-relaxed">{project.description}</p>
-          </section>
+      {/* Narrative Section 2: Designing for Impact, Built for Flexibility */}
+      <section className="mb-14 pt-10 border-t border-border/60">
+        <h2 className="text-2xl sm:text-3xl font-bold text-fg mb-4">
+          Engineering Approach & Performance
+        </h2>
+        <p className="text-muted text-base sm:text-lg leading-relaxed max-w-3xl mb-8">
+          {project.designSection}
+        </p>
 
-          <section className="space-y-3 pt-6 border-t border-border/60">
-            <h2 className="text-xl font-bold text-fg">The Challenge</h2>
-            <p className="text-muted text-base leading-relaxed">{project.problem}</p>
-          </section>
-
-          <section className="space-y-3 pt-6 border-t border-border/60">
-            <h2 className="text-xl font-bold text-fg">The Engineering Solution</h2>
-            <p className="text-muted text-base leading-relaxed">{project.solution}</p>
-          </section>
-        </div>
-
-        {/* Tech Stack Sidebar */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="rounded-3xl border border-border bg-bg-soft p-6">
-            <h3 className="text-xs font-mono font-bold tracking-widest text-fg uppercase mb-4">
-              Technologies Used
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {project.stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="text-xs font-medium px-3 py-1.5 rounded-xl border border-border bg-bg text-fg"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Screenshots Gallery Section (Only rendered if real gallery pictures exist) */}
-      {project.gallery && project.gallery.length > 0 ? (
-        <section className="pt-10 border-t border-border mb-16">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <span className="text-xs font-mono font-bold tracking-widest text-accent uppercase bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
-                PROJECT SCREENSHOTS & UI GALLERY
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-fg mt-3">
-                Detailed Interface & System Workflows
-              </h2>
-            </div>
-            <span className="text-xs font-mono text-muted hidden sm:inline-block">
-              Click any screenshot to expand
-            </span>
-          </div>
-
-          {/* 6 Image Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {project.gallery.map((imgUrl, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -4, scale: 1.02 }}
-                onClick={() => setSelectedImage(imgUrl)}
-                className="group relative aspect-16/10 rounded-2xl overflow-hidden border border-border bg-bg-soft cursor-pointer shadow-md"
-              >
-                <Image
-                  src={imgUrl}
-                  alt={`${project.title} Screenshot ${i + 1}`}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-mono font-bold">
-                  🔍 Click to Expand
-                </div>
-                <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-white/90">
-                  0{i + 1} / 0{project.gallery?.length || 6}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      {/* Key Engineering Features */}
-      <section className="pt-10 border-t border-border">
-        <h2 className="text-2xl font-bold text-fg mb-8">Key Engineering Highlights</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {project.features.map((feature, i) => (
-            <div key={i} className="rounded-3xl border border-border bg-bg-soft p-6 flex items-start gap-3">
-              <span className="text-accent font-bold text-lg">•</span>
-              <p className="text-sm text-fg/90 font-medium leading-relaxed">{feature}</p>
+        {/* 2-Column Side-by-Side Screenshots Grid (Majd Reference Style) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+          {project.gallery.slice(0, 2).map((img, i) => (
+            <div
+              key={i}
+              onClick={() => setSelectedImage(img)}
+              className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-border bg-bg-soft cursor-pointer shadow-md group"
+            >
+              <Image
+                src={img}
+                alt={`${project.title} Preview ${i + 1}`}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.srcset = "/projects/yarana/screenshot-1.jpg";
+                }}
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-mono font-bold">
+                🔍 Click to Expand
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Lightbox Expand Modal */}
+      {/* Narrative Section 3: System Architecture */}
+      <section className="mb-14 pt-10 border-t border-border/60">
+        <h2 className="text-2xl sm:text-3xl font-bold text-fg mb-4">System Architecture & Tech Stack</h2>
+        <p className="text-muted text-base sm:text-lg leading-relaxed max-w-3xl mb-6">
+          {project.architecture}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-8">
+          {project.stack.map((tech) => (
+            <span
+              key={tech}
+              className="text-xs font-medium px-4 py-2 rounded-xl border border-border bg-bg-soft text-fg"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* Full UI Screenshots Showcase Grid */}
+      <section className="mb-20 pt-10 border-t border-border">
+        <h2 className="text-2xl sm:text-3xl font-bold text-fg mb-8">Full UI Screenshots Showcase</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {project.gallery.map((img, i) => (
+            <div
+              key={i}
+              onClick={() => setSelectedImage(img)}
+              className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-border bg-bg-soft cursor-pointer shadow-md group"
+            >
+              <Image
+                src={img}
+                alt={`${project.title} Screenshot ${i + 1}`}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.srcset = "/projects/yarana/screenshot-1.jpg";
+                }}
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-mono font-bold">
+                🔍 Click to Expand
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* "More Projects" Navigation Section (Majd Reference Style) */}
+      <section className="pt-14 border-t border-border">
+        <h2 className="text-3xl font-bold text-fg mb-8">More Projects</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {otherProjects.map((other) => (
+            <a
+              key={other.slug}
+              href={`/work/${other.slug}`}
+              className="group block cursor-pointer"
+            >
+              <div
+                className={`relative aspect-[16/10] w-full rounded-3xl bg-gradient-to-br ${other.bgGradient} p-4 overflow-hidden shadow-lg border border-border/40 transition-all duration-500 group-hover:shadow-2xl`}
+              >
+                <div className="relative w-full h-full rounded-2xl overflow-hidden bg-black shadow-xl">
+                  <Image
+                    src={other.heroImage}
+                    alt={other.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.srcset = "/projects/yarana/screenshot-1.jpg";
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="mt-3 px-1">
+                <h3 className="text-xl font-bold text-fg group-hover:text-accent transition-colors leading-tight">
+                  {other.title}
+                </h3>
+                <p className="text-muted text-xs font-medium mt-1">{other.subtitle}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Lightbox Expand Fullscreen Modal */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -350,7 +465,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative max-w-5xl w-full aspect-16/10 rounded-3xl overflow-hidden border border-white/20 shadow-2xl"
+              className="relative max-w-6xl w-full aspect-[16/10] rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black"
               onClick={(e) => e.stopPropagation()}
             >
               <Image
@@ -358,7 +473,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                 alt="Expanded Screenshot"
                 fill
                 sizes="100vw"
-                className="object-contain bg-black"
+                className="object-contain"
               />
               <button
                 onClick={() => setSelectedImage(null)}
@@ -370,16 +485,6 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Back CTA */}
-      <div className="mt-16 text-center pt-10 border-t border-border">
-        <a
-          href="/#contact"
-          className="inline-flex items-center gap-2 rounded-full bg-fg text-bg px-8 py-4 text-sm font-semibold hover:opacity-90 transition-opacity"
-        >
-          <HoverRoll>Interested in a similar project? Let’s Talk</HoverRoll>
-        </a>
-      </div>
     </main>
   );
 }
