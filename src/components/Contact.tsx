@@ -85,9 +85,28 @@ export default function Contact() {
             <h2 className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-fg leading-none mb-6">
               Let’s talk.
             </h2>
-            <p className="text-muted text-base sm:text-lg max-w-md leading-relaxed">
-              Have a web development, graphic design, or AI project in mind? Fill out the form, and I&apos;ll get back to you soon.
+            <p className="text-muted text-base sm:text-lg max-w-md leading-relaxed mb-8">
+              Have a full-stack web application, custom PHP/Next.js system, or AI integration in mind? Get in touch directly.
             </p>
+
+            <div className="space-y-4 mb-8 text-sm sm:text-base text-fg/90">
+              <div className="flex items-center gap-3">
+                <span className="font-mono text-accent font-bold">EMAIL:</span>
+                <a href="mailto:basharat81253@gmail.com" className="hover:underline font-medium">
+                  basharat81253@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="font-mono text-accent font-bold">PHONE:</span>
+                <a href="tel:+923139986112" className="hover:underline font-medium">
+                  0313-9986112 (+92 313 9986112)
+                </a>
+              </div>
+              <div className="flex items-center gap-3 text-muted text-xs sm:text-sm">
+                <span className="font-mono text-accent font-bold">LOCATION:</span>
+                <span>P/o Jokalian, Tehsil Phalia, M.B.Din, Punjab, Pakistan 🇵🇰</span>
+              </div>
+            </div>
           </div>
 
           {/* Social Icons at Bottom Left */}

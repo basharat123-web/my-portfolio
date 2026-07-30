@@ -5,6 +5,62 @@ import HoverRoll from "@/components/HoverRoll";
 
 const ALL_PROJECTS = [
   {
+    slug: "yarana-nal-baharan-pigeon-club",
+    title: "Yarana Nal Baharan Pigeon Club",
+    subtitle: "International Client — Greece 🇬🇷",
+    date: "2025",
+    description:
+      "Built for a client based in Greece — live pigeon race tracking & club management system with real-time leaderboard, pigeon count stats, live viewer counter, Facebook integration, and weather widget. Delivered remotely for an international client.",
+    details: [
+      "Real-time leaderboard & live pigeon status updates",
+      "Live viewer counter and active participant stats",
+      "Integrated Facebook social widget & weather API",
+    ],
+    tags: ["PHP", "MySQL", "Real-time", "International Client"],
+  },
+  {
+    slug: "abs24-news-portal",
+    title: "ABS24 News Network",
+    subtitle: "WordPress News Portal",
+    date: "2025",
+    description:
+      "Custom PHP theme built from scratch for a full Urdu news network. Handles breaking news, live ticker, categories, and social media integration for daily readers.",
+    details: [
+      "Custom PHP WordPress theme engineered from scratch",
+      "High-speed breaking news ticker & category managers",
+      "Native Urdu font typography & RTL layout optimization",
+    ],
+    tags: ["WordPress", "Custom PHP Theme", "Urdu CMS", "MySQL"],
+  },
+  {
+    slug: "axiom-research-group",
+    title: "Axiom Research Group",
+    subtitle: "Corporate Website",
+    date: "2025",
+    description:
+      "Professional corporate website for a global market research & consulting firm. Serves clients across multiple countries with a survey portal, case studies, and client showcase.",
+    details: [
+      "Responsive multi-page corporate architecture",
+      "Interactive survey portal & client case study showcases",
+      "Secure PHP contact form & lead capture handlers",
+    ],
+    tags: ["HTML5", "CSS3", "JavaScript", "PHP", "Corporate"],
+  },
+  {
+    slug: "shoq-ki-baat-live-tracking",
+    title: "Shoq Ki Baat Live Tracking",
+    subtitle: "Live Tracking System",
+    date: "2025",
+    description:
+      "Live pigeon race tracking & tournament management system with real-time leaderboard, pigeon stats, weather integration, and admin panel. Powers active tournaments for hundreds of participants.",
+    details: [
+      "Automated timing calculations & instant leaderboard rankings",
+      "Admin CMS for tournament registration & judge scoring",
+      "Integrated weather widgets for active flying days",
+    ],
+    tags: ["PHP", "MySQL", "Live Data", "Urdu CMS"],
+  },
+  {
     slug: "autonomous-ai-assistant-openclaw",
     title: "Autonomous AI Assistant (OpenClaw)",
     subtitle: "WhatsApp Automated AI Agent",
@@ -17,34 +73,6 @@ const ALL_PROJECTS = [
       "Automated chat workflows and webhook dispatchers",
     ],
     tags: ["AI Integration", "OpenClaw", "WhatsApp Automation", "Model Endpoints"],
-  },
-  {
-    slug: "windows-video-downloader-utility",
-    title: "Windows Video Downloader Utility",
-    subtitle: "Desktop Media Downloader App",
-    date: "June 2026",
-    description:
-      "Built and compiled a fully functional Windows desktop utility application designed to execute single-click video downloads. Structured an independent application pipeline from conception to final binary compilation.",
-    details: [
-      "Single-click multi-threaded video stream fetcher",
-      "Custom standalone GUI with desktop notifications",
-      "Optimized independent pipeline from conception to deployment",
-    ],
-    tags: ["Windows Utility", "Desktop App", "Pipeline Architecture", "Tooling"],
-  },
-  {
-    slug: "mern-stack-nextjs-architecture",
-    title: "MERN Stack & Next.js SaaS Architecture",
-    subtitle: "Full-Stack Build & Type System Curriculum",
-    date: "July 2026 – Present",
-    description:
-      "Executing an intensive, structured 90-day learning curriculum focused on advanced MERN stack development, TypeScript type systems, Next.js App Router, and Tailwind CSS design. Documenting daily build logs and screen recordings.",
-    details: [
-      "Full Next.js App Router & Server Components optimization",
-      "Strict TypeScript interface definitions & type safety",
-      "Scalable MERN backend with MongoDB & Express API endpoints",
-    ],
-    tags: ["Next.js", "MERN Stack", "TypeScript", "App Router", "Tailwind CSS"],
   },
   {
     slug: "bh-tech-hub-saas-migration",

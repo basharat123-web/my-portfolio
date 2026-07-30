@@ -21,6 +21,90 @@ interface ProjectDetail {
 }
 
 const PROJECTS_DATA: Record<string, ProjectDetail> = {
+  "yarana-nal-baharan-pigeon-club": {
+    slug: "yarana-nal-baharan-pigeon-club",
+    title: "Yarana Nal Baharan Pigeon Club",
+    subtitle: "Real-time Pigeon Race Tracking & Club Management System",
+    category: "INTERNATIONAL CLIENT — GREECE 🇬🇷",
+    date: "2025",
+    liveUrl: "https://yarannalbaharan.com",
+    description:
+      "Built remotely for an international client based in Greece. Features a live pigeon race tracking & club management system with real-time leaderboards, pigeon count statistics, live viewer counters, Facebook integration, and live weather widgets.",
+    problem:
+      "The pigeon racing club needed an online platform to track live race results across multiple international participants in real-time without server delays or leaderboard sync issues.",
+    solution:
+      "Developed a custom PHP and MySQL web application with automated database polling and real-time frontend updates to display live tournament leaderboards, pigeon status, and weather forecasts.",
+    stack: ["PHP", "MySQL", "JavaScript", "Real-time Polling", "Facebook API", "Weather API"],
+    features: [
+      "Real-time leaderboard & live pigeon status updates",
+      "Live viewer counter and active participant stats",
+      "Integrated Facebook social widget & weather API",
+      "Custom admin dashboard for race score entry",
+    ],
+  },
+  "abs24-news-portal": {
+    slug: "abs24-news-portal",
+    title: "ABS24 News Network",
+    subtitle: "Custom PHP Urdu News Portal & Live Ticker",
+    category: "WORDPRESS NEWS PORTAL",
+    date: "2025",
+    liveUrl: "https://abs24news.com",
+    description:
+      "Custom PHP theme built from scratch for a full Urdu news network. Handles breaking news, live breaking news ticker, categories, and social media integration for daily readers in Pakistan and abroad.",
+    problem:
+      "Off-the-shelf WordPress news themes were slow, bloated with unused code, and failed to support proper right-to-left (RTL) Urdu font rendering and breaking news tickers.",
+    solution:
+      "Engineered a lightweight custom WordPress PHP theme with optimized database queries, custom Gutenberg blocks, and native Urdu font typography.",
+    stack: ["WordPress", "Custom PHP Theme", "MySQL", "JavaScript", "Urdu RTL"],
+    features: [
+      "Custom PHP WordPress theme engineered from scratch",
+      "High-speed breaking news ticker & category managers",
+      "Native Urdu font typography & RTL layout optimization",
+      "Social media auto-sharing and mobile responsive layout",
+    ],
+  },
+  "axiom-research-group": {
+    slug: "axiom-research-group",
+    title: "Axiom Research Group",
+    subtitle: "Global Market Research & Consulting Platform",
+    category: "CORPORATE WEBSITE",
+    date: "2025",
+    liveUrl: "https://www.axiomresearchgroup.site",
+    description:
+      "Professional corporate website for a global market research & consulting firm. Serves clients across multiple countries with a survey portal, case studies, and client showcase.",
+    problem:
+      "The market research firm required a professional, high-trust corporate portal to present research case studies, client testimonials, and capture business survey leads.",
+    solution:
+      "Designed and coded a fast, responsive corporate website using clean HTML5, CSS3, JavaScript, and a secure PHP contact & survey inquiry handler.",
+    stack: ["HTML5", "CSS3", "JavaScript", "PHP", "Corporate Architecture"],
+    features: [
+      "Responsive multi-page corporate architecture",
+      "Interactive survey portal & client case study showcases",
+      "Secure PHP contact form & lead capture handlers",
+      "Cross-browser compatibility & fast asset delivery",
+    ],
+  },
+  "shoq-ki-baat-live-tracking": {
+    slug: "shoq-ki-baat-live-tracking",
+    title: "Shoq Ki Baat Live Tracking",
+    subtitle: "Tournament Management & Real-time Leaderboard",
+    category: "LIVE TRACKING SYSTEM",
+    date: "2025",
+    liveUrl: "https://shoqkibat.com",
+    description:
+      "Live pigeon race tracking & tournament management system with real-time leaderboard, pigeon stats, weather integration, and admin panel. Powers active tournaments for hundreds of participants.",
+    problem:
+      "Managing large-scale bird flying tournaments manually on paper led to calculation errors and delayed result publishing for tournament participants.",
+    solution:
+      "Automated tournament management by creating a custom PHP/MySQL database system that automatically computes race timings, rankings, and publishes real-time leaderboards online.",
+    stack: ["PHP", "MySQL", "JavaScript", "Urdu CMS", "Weather API"],
+    features: [
+      "Automated timing calculations & instant leaderboard rankings",
+      "Admin CMS for tournament registration & judge scoring",
+      "Integrated weather widgets for active flying days",
+      "Used actively by hundreds of tournament participants",
+    ],
+  },
   "autonomous-ai-assistant-openclaw": {
     slug: "autonomous-ai-assistant-openclaw",
     title: "Autonomous AI Assistant (OpenClaw)",
@@ -28,7 +112,6 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
     category: "AI & AUTOMATION",
     date: "May 2026",
     githubUrl: "https://github.com/basharathussain",
-    liveUrl: "https://bhtechhub.com",
     description:
       "Engineered and deployed a localized automated WhatsApp chat agent utilizing the open-source OpenClaw framework. Configured environment files, localized model endpoints, and specific persona parameters to activate the virtual assistant.",
     problem:
@@ -41,49 +124,6 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
       "Configured custom persona parameters & prompt engineering rules",
       "Automated chat workflows and webhook dispatchers",
       "Robust error handling & fallback message queues",
-    ],
-  },
-  "windows-video-downloader-utility": {
-    slug: "windows-video-downloader-utility",
-    title: "Windows Video Downloader Utility",
-    subtitle: "Desktop Media Downloader App",
-    category: "DESKTOP APPLICATION",
-    date: "June 2026",
-    githubUrl: "https://github.com/basharathussain",
-    description:
-      "Built and compiled a fully functional Windows desktop utility application designed to execute single-click video downloads. Structured an independent application pipeline from conception to final binary compilation.",
-    problem:
-      "Users often encounter ad-heavy online downloader websites with intrusive popups and throttled download speeds.",
-    solution:
-      "Created a clean, standalone Windows desktop application featuring multi-threaded stream fetching, custom GUI, and native Windows desktop notifications.",
-    stack: ["Windows Utility", "Desktop App", "Pipeline Architecture", "Tooling", "C++ / Python"],
-    features: [
-      "Single-click multi-threaded video stream fetcher",
-      "Custom standalone GUI with desktop notifications",
-      "Optimized independent pipeline from conception to deployment",
-      "Zero popups or third-party ad tracking",
-    ],
-  },
-  "mern-stack-nextjs-architecture": {
-    slug: "mern-stack-nextjs-architecture",
-    title: "MERN Stack & Next.js SaaS Architecture",
-    subtitle: "Full-Stack Build & Type System Curriculum",
-    category: "FULL-STACK SAAS",
-    date: "July 2026 – Present",
-    githubUrl: "https://github.com/basharathussain",
-    liveUrl: "https://bhtechhub.com",
-    description:
-      "Executing an intensive, structured 90-day learning curriculum focused on advanced MERN stack development, TypeScript type systems, Next.js App Router, and Tailwind CSS design. Documenting daily build logs and screen recordings.",
-    problem:
-      "Legacy monolithic web applications face scaling issues, slow page transitions, and complex state management across frontend and backend layers.",
-    solution:
-      "Leveraging Next.js React Server Components alongside Express REST API endpoints and strict TypeScript interfaces to guarantee end-to-end type safety and high performance.",
-    stack: ["Next.js App Router", "TypeScript", "React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
-    features: [
-      "Full Next.js App Router & Server Components optimization",
-      "Strict TypeScript interface definitions & type safety",
-      "Scalable MERN backend with MongoDB & Express API endpoints",
-      "Automated build checks and production bundles",
     ],
   },
   "bh-tech-hub-saas-migration": {

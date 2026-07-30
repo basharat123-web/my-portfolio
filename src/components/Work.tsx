@@ -5,28 +5,45 @@ import HoverRoll from "./HoverRoll";
 
 const PROJECTS = [
   {
+    slug: "yarana-nal-baharan-pigeon-club",
+    title: "Yarana Nal Baharan Pigeon Club",
+    description: "International Client (Greece 🇬🇷) — Real-time pigeon race tracking & club management system with live leaderboards, viewer counter, and weather widget.",
+    tags: ["PHP", "MySQL", "Real-time", "International Client"],
+    url: "https://yarannalbaharan.com",
+  },
+  {
+    slug: "abs24-news-portal",
+    title: "ABS24 News Network",
+    description: "Custom PHP theme built from scratch for a full Urdu news portal. Features live breaking news ticker, categories, and social media integration.",
+    tags: ["WordPress", "Custom PHP Theme", "Urdu CMS", "MySQL"],
+    url: "https://abs24news.com",
+  },
+  {
+    slug: "axiom-research-group",
+    title: "Axiom Research Group",
+    description: "Professional corporate website for a global market research & consulting firm with survey portal, case studies, and client showcase.",
+    tags: ["HTML5", "CSS3", "JavaScript", "PHP", "Corporate"],
+    url: "https://www.axiomresearchgroup.site",
+  },
+  {
+    slug: "shoq-ki-baat-live-tracking",
+    title: "Shoq Ki Baat Live Tracking",
+    description: "Live pigeon race tracking & tournament management system with real-time leaderboard, pigeon stats, weather API, and admin CMS.",
+    tags: ["PHP", "MySQL", "Live Data", "Urdu CMS"],
+    url: "https://shoqkibat.com",
+  },
+  {
     slug: "autonomous-ai-assistant-openclaw",
     title: "Autonomous AI Assistant (OpenClaw)",
     description: "Engineered and deployed a localized automated WhatsApp chat agent utilizing OpenClaw framework with custom persona parameters.",
-    tags: ["OpenClaw", "WhatsApp AI", "Model Endpoints"],
-  },
-  {
-    slug: "windows-video-downloader-utility",
-    title: "Windows Video Downloader Utility",
-    description: "Built and compiled a fully functional Windows desktop utility application designed for single-click video downloads.",
-    tags: ["Windows Utility", "Desktop App", "Independent Pipeline"],
-  },
-  {
-    slug: "mern-stack-nextjs-architecture",
-    title: "MERN Stack & Next.js Architecture",
-    description: "90-day intensive build curriculum focused on advanced MERN stack, TypeScript type systems, Next.js App Router, and Tailwind CSS.",
-    tags: ["Next.js", "TypeScript", "MERN Stack", "App Router"],
+    tags: ["OpenClaw", "WhatsApp AI", "Model Endpoints", "Node.js"],
   },
   {
     slug: "bh-tech-hub-saas-migration",
-    title: "BH Tech Hub & B&S Solution Network",
-    description: "Executing full technical migration from WordPress to a custom component-based SaaS architecture with advanced SEO logic.",
-    tags: ["SaaS Architecture", "Next.js", "WordPress Migration", "SEO"],
+    title: "BH Tech Hub Platform",
+    description: "Tech blog & custom SaaS migration from WordPress to Next.js App Router with server-side logic and technical SEO optimizations.",
+    tags: ["Next.js", "WordPress Migration", "SEO", "Ahrefs"],
+    url: "https://bhtechhub.com",
   },
 ];
 

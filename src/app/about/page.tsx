@@ -89,11 +89,25 @@ export default function AboutPage() {
           <p>
             Proven track record in transitioning from traditional CMS platforms to modern component-based SaaS architectures using MERN stack and Next.js. Adept at AI integrations, SEO management, and computer hardware diagnostics.
           </p>
-          <div className="pt-4 flex items-center gap-4">
-            <div className="rounded-2xl border border-border bg-bg-soft p-4 flex-1">
-              <p className="text-xs font-semibold text-muted uppercase">Education</p>
-              <p className="text-sm font-bold text-fg mt-1">Computer Science Coursework</p>
-              <p className="text-xs text-muted">University of Chenab</p>
+          <div className="pt-4 space-y-3">
+            <div className="rounded-2xl border border-border bg-bg-soft p-5">
+              <span className="text-xs font-mono font-bold text-accent">CERTIFICATION // PSDI</span>
+              <p className="text-base font-bold text-fg mt-1">Comprehensive Web Development Bootcamp (2025)</p>
+              <p className="text-xs text-muted">PSDI — Portal.PSDI.PK Initiative • Verification ID: <span className="font-mono text-fg font-semibold">45be378283</span></p>
+              <p className="text-xs text-muted/80 mt-1">Signed by: Major Mustafa Zaidi, Director PSDI</p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="rounded-2xl border border-border bg-bg-soft p-4">
+                <span className="text-xs font-mono font-bold text-accent">EDUCATION // 2023</span>
+                <p className="text-sm font-bold text-fg mt-1">ICS — Computer Science</p>
+                <p className="text-xs text-muted">Punjab College Phalia | BISE Gujranwala</p>
+              </div>
+              <div className="rounded-2xl border border-border bg-bg-soft p-4">
+                <span className="text-xs font-mono font-bold text-accent">EDUCATION // 2021</span>
+                <p className="text-sm font-bold text-fg mt-1">MATRIC — Grade A+</p>
+                <p className="text-xs text-muted">Govt. High School Jokalian | BISE Gujranwala</p>
+              </div>
             </div>
           </div>
         </div>
