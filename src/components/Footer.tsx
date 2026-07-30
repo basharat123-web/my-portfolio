@@ -60,19 +60,34 @@ export default function Footer() {
   const navColumns = [
     {
       title: "PRODUCT",
-      links: ["Components", "Templates", "Pricing"],
+      links: [
+        { label: "Components", href: "/documentation" },
+        { label: "Templates", href: "/documentation" },
+        { label: "Pricing", href: "/support" },
+      ],
     },
     {
       title: "COMPANY",
-      links: ["About", "Blog", "Careers"],
+      links: [
+        { label: "About", href: "/about" },
+        { label: "Blog", href: "/blog" },
+        { label: "Careers", href: "/careers" },
+      ],
     },
     {
       title: "RESOURCES",
-      links: ["Documentation", "Support", "Changelog"],
+      links: [
+        { label: "Documentation", href: "/documentation" },
+        { label: "Support", href: "/support" },
+        { label: "Changelog", href: "/changelog" },
+      ],
     },
     {
       title: "LEGAL",
-      links: ["Privacy", "Terms"],
+      links: [
+        { label: "Privacy", href: "/privacy" },
+        { label: "Terms", href: "/terms" },
+      ],
     },
   ];
 
@@ -89,8 +104,8 @@ export default function Footer() {
                 Basharat Hussain
               </h3>
               <p className="text-muted text-sm sm:text-base leading-relaxed max-w-md">
-                Full-stack web developer, graphic designer, and founder of BH Tech Hub.
-                Building modern SaaS platforms, technical SEO, and digital experiences.
+                Full-stack web developer and software engineer.
+                Building modern Next.js SaaS platforms, AI automation agents, and scalable web architectures.
               </p>
 
               {/* Social Icons */}
@@ -124,12 +139,12 @@ export default function Footer() {
                 </h4>
                 <ul className="space-y-3">
                   {col.links.map((link) => (
-                    <li key={link}>
+                    <li key={link.label}>
                       <a
-                        href="#"
+                        href={link.href}
                         className="text-sm font-medium text-fg/80 hover:text-fg transition-colors"
                       >
-                        <HoverRoll>{link}</HoverRoll>
+                        <HoverRoll>{link.label}</HoverRoll>
                       </a>
                     </li>
                   ))}
@@ -146,10 +161,10 @@ export default function Footer() {
 
           {/* Right: Policy Links & Back to Top */}
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-fg transition-colors">
+            <a href="/privacy" className="hover:text-fg transition-colors">
               <HoverRoll>Privacy Policy</HoverRoll>
             </a>
-            <a href="#" className="hover:text-fg transition-colors">
+            <a href="/terms" className="hover:text-fg transition-colors">
               <HoverRoll>Terms of Service</HoverRoll>
             </a>
             <button

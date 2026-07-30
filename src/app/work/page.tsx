@@ -5,6 +5,7 @@ import HoverRoll from "@/components/HoverRoll";
 
 const ALL_PROJECTS = [
   {
+    slug: "autonomous-ai-assistant-openclaw",
     title: "Autonomous AI Assistant (OpenClaw)",
     subtitle: "WhatsApp Automated AI Agent",
     date: "May 2026",
@@ -18,6 +19,7 @@ const ALL_PROJECTS = [
     tags: ["AI Integration", "OpenClaw", "WhatsApp Automation", "Model Endpoints"],
   },
   {
+    slug: "windows-video-downloader-utility",
     title: "Windows Video Downloader Utility",
     subtitle: "Desktop Media Downloader App",
     date: "June 2026",
@@ -31,6 +33,7 @@ const ALL_PROJECTS = [
     tags: ["Windows Utility", "Desktop App", "Pipeline Architecture", "Tooling"],
   },
   {
+    slug: "mern-stack-nextjs-architecture",
     title: "MERN Stack & Next.js SaaS Architecture",
     subtitle: "Full-Stack Build & Type System Curriculum",
     date: "July 2026 – Present",
@@ -44,6 +47,7 @@ const ALL_PROJECTS = [
     tags: ["Next.js", "MERN Stack", "TypeScript", "App Router", "Tailwind CSS"],
   },
   {
+    slug: "bh-tech-hub-saas-migration",
     title: "BH Tech Hub & B&S Solution Network",
     subtitle: "Custom SaaS Platform Migration",
     date: "2025 – Present",
@@ -82,13 +86,14 @@ export default function WorkPage() {
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
         {ALL_PROJECTS.map((project, index) => (
-          <motion.div
+          <motion.a
             key={project.title}
+            href={`/work/${project.slug}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group flex flex-col justify-between rounded-3xl border border-border bg-bg-soft p-8 shadow-sm hover:shadow-xl transition-all duration-300"
+            className="group flex flex-col justify-between rounded-3xl border border-border bg-bg-soft p-8 shadow-sm hover:shadow-xl transition-all duration-300 block"
           >
             <div>
               <div className="flex items-center justify-between gap-4 mb-4">
@@ -130,7 +135,7 @@ export default function WorkPage() {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
 

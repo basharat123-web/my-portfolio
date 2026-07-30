@@ -12,8 +12,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Basharat Hussain — Full-Stack Developer & Graphic Designer",
-  description: "Versatile technology professional specializing in full-stack web development, Next.js, MERN stack, graphic design, SEO, and AI integrations.",
+  title: "Basharat Hussain — Full-Stack Web Developer & Software Engineer",
+  description: "Full-Stack Web Developer and Software Engineer specializing in Next.js, React, TypeScript, Node.js, MERN stack, AI automation, and scalable SaaS architectures.",
 };
 
 export default function RootLayout({

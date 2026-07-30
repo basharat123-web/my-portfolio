@@ -22,7 +22,7 @@ export default function About() {
         >
           <p className="text-4xl sm:text-5xl font-semibold mb-8">Hey!</p>
           <p className="text-muted max-w-xs leading-relaxed">
-            I&apos;m <strong className="text-fg font-semibold">Basharat Hussain</strong>, Founder of BH Tech Hub & B&S Solution Network. I specialize in full-stack web development, graphic design, and AI integrations.
+            I&apos;m <strong className="text-fg font-semibold">Basharat Hussain</strong>, Founder of BH Tech Hub & B&S Solution Network. I specialize in full-stack web development, Next.js, MERN stack, and AI integrations.
           </p>
         </motion.div>
 
@@ -40,11 +40,11 @@ export default function About() {
         >
           <ScrollRevealText
             className="text-fg mb-6"
-            text="Versatile technology professional with robust expertise in full-stack web development, MERN stack, Next.js, and systems optimization."
+            text="Full-stack web developer and software engineer with expertise in Next.js, React, TypeScript, Node.js, and MERN stack systems."
           />
           <ScrollRevealText
             className="text-muted mb-8"
-            text="Proven track record in transitioning traditional CMS platforms to modern component-based SaaS architectures, technical SEO management, and graphic illustration."
+            text="Proven track record in building scalable web applications, migrating legacy CMS setups to high-performance SaaS architectures, and integrating autonomous AI agents."
           />
           <a
             href="#work"

@@ -5,21 +5,25 @@ import HoverRoll from "./HoverRoll";
 
 const PROJECTS = [
   {
+    slug: "autonomous-ai-assistant-openclaw",
     title: "Autonomous AI Assistant (OpenClaw)",
     description: "Engineered and deployed a localized automated WhatsApp chat agent utilizing OpenClaw framework with custom persona parameters.",
     tags: ["OpenClaw", "WhatsApp AI", "Model Endpoints"],
   },
   {
+    slug: "windows-video-downloader-utility",
     title: "Windows Video Downloader Utility",
     description: "Built and compiled a fully functional Windows desktop utility application designed for single-click video downloads.",
     tags: ["Windows Utility", "Desktop App", "Independent Pipeline"],
   },
   {
+    slug: "mern-stack-nextjs-architecture",
     title: "MERN Stack & Next.js Architecture",
     description: "90-day intensive build curriculum focused on advanced MERN stack, TypeScript type systems, Next.js App Router, and Tailwind CSS.",
     tags: ["Next.js", "TypeScript", "MERN Stack", "App Router"],
   },
   {
+    slug: "bh-tech-hub-saas-migration",
     title: "BH Tech Hub & B&S Solution Network",
     description: "Executing full technical migration from WordPress to a custom component-based SaaS architecture with advanced SEO logic.",
     tags: ["SaaS Architecture", "Next.js", "WordPress Migration", "SEO"],
@@ -51,7 +55,7 @@ export default function Work() {
           {PROJECTS.map((project, i) => (
             <motion.a
               key={project.title}
-              href="/work"
+              href={`/work/${project.slug}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -59,7 +63,11 @@ export default function Work() {
               whileHover={{ y: -6 }}
               className="group block rounded-2xl border border-border overflow-hidden bg-bg-soft"
             >
-              <div className="aspect-video bg-gradient-to-br from-bg-soft to-border" />
+              <div className="aspect-video bg-gradient-to-br from-bg-soft to-border flex items-center justify-center p-6 text-center">
+                <span className="text-sm font-bold text-fg/80 uppercase tracking-widest group-hover:text-accent transition-colors">
+                  {project.title} ↗
+                </span>
+              </div>
               <div className="p-6">
                 <h3 className="text-lg font-medium mb-2 group-hover:text-accent transition-colors">
                   {project.title}
