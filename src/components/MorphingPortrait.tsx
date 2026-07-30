@@ -19,6 +19,7 @@ export default function MorphingPortrait() {
       const rotator = rotatorRef.current;
       if (!container || !startAnchor || !endAnchor || !card || !rotator) return;
 
+      let from = { left: 0, top: 0, width: 0, height: 0 };
       let to = { left: 0, top: 0, width: 0, height: 0 };
 
       const measure = () => {
@@ -26,12 +27,19 @@ export default function MorphingPortrait() {
         const startRect = startAnchor.getBoundingClientRect();
         const endRect = endAnchor.getBoundingClientRect();
 
-        gsap.set(card, {
-          position: "absolute",
+        from = {
           left: startRect.left - containerRect.left,
           top: startRect.top - containerRect.top,
           width: startRect.width,
           height: startRect.height,
+        };
+
+        gsap.set(card, {
+          position: "absolute",
+          left: from.left,
+          top: from.top,
+          width: from.width,
+          height: from.height,
         });
 
         to = {
@@ -60,8 +68,8 @@ export default function MorphingPortrait() {
       if (isMobile) {
         // Mobile curve: swings out to the right mid-scroll with 3D rotation, then settles into About section
         tl.to(card, {
-          left: () => (startRect.left - containerRect.left) + 85,
-          top: () => (startRect.top - containerRect.top) + (endRect.top - startRect.top) * 0.45,
+          left: () => from.left + 85,
+          top: () => from.top + (to.top - from.top) * 0.45,
           rotateZ: 14,
           duration: 0.5,
           ease: "power1.inOut",
