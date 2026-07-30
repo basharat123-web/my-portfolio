@@ -1,11 +1,10 @@
 "use client";
 
-// Web Audio API Synthesizer for zero-latency, ultra-crisp UI sound effects
+// Realistic Acoustic UI Sound Synthesizer using Web Audio API
 
 let audioCtx: AudioContext | null = null;
 let soundEnabled = true;
 
-// Auto-unlock AudioContext on first user gesture (mouse, touch, keydown)
 if (typeof window !== "undefined") {
   const unlockAudio = () => {
     if (audioCtx && audioCtx.state === "suspended") {
@@ -13,13 +12,10 @@ if (typeof window !== "undefined") {
     } else if (!audioCtx) {
       getAudioContext();
     }
-    window.removeEventListener("pointerdown", unlockAudio);
-    window.removeEventListener("keydown", unlockAudio);
-    window.removeEventListener("touchstart", unlockAudio);
   };
-  window.addEventListener("pointerdown", unlockAudio);
-  window.addEventListener("keydown", unlockAudio);
-  window.addEventListener("touchstart", unlockAudio);
+  window.addEventListener("pointerdown", unlockAudio, { once: true });
+  window.addEventListener("keydown", unlockAudio, { once: true });
+  window.addEventListener("touchstart", unlockAudio, { once: true });
 }
 
 function getAudioContext(): AudioContext | null {
@@ -51,63 +47,110 @@ export function toggleSound(): boolean {
   return soundEnabled;
 }
 
-// 1. High-Pitch Hover Tick (Audible, crisp UI micro-interaction)
+// 1. Realistic Organic UI Hover Tick (Acoustic Glass/Touch Snap)
 export function playHoverSound() {
   if (!soundEnabled) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
 
-    const osc = ctx.createOscillator();
+    // Filtered noise snap for physical touch texture
+    const bufferSize = ctx.sampleRate * 0.005; // 5ms burst
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1;
+    }
+
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+
+    const filter = ctx.createBiquadFilter();
+    filter.type = "highpass";
+    filter.frequency.value = 2200;
+
     const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.04, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.005);
 
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(1000, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(1600, ctx.currentTime + 0.04);
-
-    // Increased gain for clear audibility
-    gain.gain.setValueAtTime(0.06, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.04);
-
-    osc.connect(gain);
+    noise.connect(filter);
+    filter.connect(gain);
     gain.connect(ctx.destination);
 
+    // Subtle resonant tone body
+    const osc = ctx.createOscillator();
+    const oscGain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(1400, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.008);
+
+    oscGain.gain.setValueAtTime(0.02, ctx.currentTime);
+    oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.008);
+
+    osc.connect(oscGain);
+    oscGain.connect(ctx.destination);
+
+    noise.start(ctx.currentTime);
     osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.04);
+    osc.stop(ctx.currentTime + 0.008);
   } catch (e) {
     // Ignore autoplay restriction
   }
 }
 
-// 2. Crisp UI Click Snap / Pop
+// 2. Realistic Mechanical Latch / Tactile Click Snap
 export function playClickSound() {
   if (!soundEnabled) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
 
-    const osc = ctx.createOscillator();
+    // Latch click noise burst
+    const bufferSize = ctx.sampleRate * 0.012; // 12ms
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1;
+    }
+
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+
+    const filter = ctx.createBiquadFilter();
+    filter.type = "bandpass";
+    filter.frequency.value = 1800;
+    filter.Q.value = 3;
+
     const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.012);
 
-    osc.type = "triangle";
-    osc.frequency.setValueAtTime(520, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(220, ctx.currentTime + 0.06);
-
-    // Increased gain for punchy click sound
-    gain.gain.setValueAtTime(0.12, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.06);
-
-    osc.connect(gain);
+    noise.connect(filter);
+    filter.connect(gain);
     gain.connect(ctx.destination);
 
+    // Tactile thud body
+    const osc = ctx.createOscillator();
+    const oscGain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(160, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.025);
+
+    oscGain.gain.setValueAtTime(0.12, ctx.currentTime);
+    oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.025);
+
+    osc.connect(oscGain);
+    oscGain.connect(ctx.destination);
+
+    noise.start(ctx.currentTime);
     osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.06);
+    osc.stop(ctx.currentTime + 0.025);
   } catch (e) {
     // Ignore autoplay restriction
   }
 }
 
-// 3. Smooth Toggle Open / Close Sound
+// 3. Smooth Pitch Slide Toggle Sound
 export function playToggleSound(isOpen: boolean) {
   if (!soundEnabled) return;
   try {
@@ -122,16 +165,16 @@ export function playToggleSound(isOpen: boolean) {
     const endFreq = isOpen ? 700 : 350;
 
     osc.frequency.setValueAtTime(startFreq, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(endFreq, ctx.currentTime + 0.08);
+    osc.frequency.exponentialRampToValueAtTime(endFreq, ctx.currentTime + 0.06);
 
-    gain.gain.setValueAtTime(0.08, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.08);
+    gain.gain.setValueAtTime(0.05, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.06);
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
     osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.08);
+    osc.stop(ctx.currentTime + 0.06);
   } catch (e) {
     // Ignore
   }
