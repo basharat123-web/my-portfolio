@@ -100,9 +100,9 @@ export default function DocumentCard({
         </div>
       </motion.div>
 
-      {/* 3. FRONT FOLDER COVER (3D HINGE FLAP) */}
+      {/* 3. FRONT FOLDER COVER (REALISTIC TWO-SIDED 3D HINGE FLAP) */}
       <motion.div
-        className={`absolute inset-0 rounded-[24px] bg-gradient-to-br ${folderColor} p-6 text-white shadow-2xl flex flex-col justify-between border border-white/20 z-20 pointer-events-none`}
+        className="absolute inset-0 z-20 pointer-events-none"
         style={{ transformOrigin: "left center", transformStyle: "preserve-3d" }}
         initial="rest"
         animate={activeState}
@@ -113,37 +113,71 @@ export default function DocumentCard({
         }}
         transition={{ type: "spring", stiffness: 220, damping: 22 }}
       >
-        {/* Cover Header */}
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-[11px] font-mono font-bold tracking-widest text-white/90 uppercase bg-white/10 px-3 py-1 rounded-full border border-white/20">
-              CONFIDENTIAL FILES
-            </span>
-            <div className="w-3 h-3 rounded-full bg-white/30 animate-pulse" />
+        {/* FRONT FACE (Visible when folder is closed) */}
+        <div
+          className={`absolute inset-0 rounded-[24px] bg-gradient-to-br ${folderColor} p-6 text-white shadow-2xl flex flex-col justify-between border border-white/20`}
+          style={{ backfaceVisibility: "hidden" }}
+        >
+          {/* Cover Header */}
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-[11px] font-mono font-bold tracking-widest text-white/90 uppercase bg-white/10 px-3 py-1 rounded-full border border-white/20">
+                CONFIDENTIAL FILES
+              </span>
+              <div className="w-3 h-3 rounded-full bg-white/30 animate-pulse" />
+            </div>
+
+            <h3 className="text-xl font-bold tracking-tight text-white mb-1">
+              Client Feedback
+            </h3>
+            <p className="text-xs text-white/70">
+              Click to inspect detailed report
+            </p>
           </div>
 
-          <h3 className="text-xl font-bold tracking-tight text-white mb-1">
-            Client Feedback
-          </h3>
-          <p className="text-xs text-white/70">
-            Click to inspect detailed report
-          </p>
+          {/* Cover Footer */}
+          <div className="flex items-end justify-between pt-4 border-t border-white/15">
+            <div className="text-[10px] text-white/60 uppercase tracking-widest font-mono">
+              {isOpen ? "STATUS: OPENED" : isHovered ? "STATUS: UNLOCKED" : "STATUS: SEALED"}
+            </div>
+
+            <div className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white">
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+              </svg>
+            </div>
+          </div>
         </div>
 
-        {/* Cover Footer & Watermark Logo */}
-        <div className="flex items-end justify-between pt-4 border-t border-white/15">
-          <div className="text-[10px] text-white/60 uppercase tracking-widest font-mono">
-            {isOpen ? "STATUS: OPENED" : isHovered ? "STATUS: UNLOCKED" : "STATUS: SEALED"}
+        {/* BACK FACE (Inside Flap Surface - Rotated 180deg so text/graphics read forward correctly with ZERO mirroring!) */}
+        <div
+          className={`absolute inset-0 rounded-[24px] bg-gradient-to-br ${folderColor} p-6 text-white shadow-2xl flex flex-col justify-between border border-white/20`}
+          style={{
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+          }}
+        >
+          {/* Inside Flap Texture */}
+          <div className="flex items-center justify-between border-b border-white/15 pb-3">
+            <span className="text-[10px] font-mono font-bold tracking-widest text-white/70 uppercase">
+              INSIDE COVER
+            </span>
+            <span className="text-[10px] font-mono text-white/50">OFFICIAL REPORT</span>
           </div>
 
-          {/* Folder Seal SVG */}
-          <div className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white">
-            <svg
-              className="w-5 h-5 fill-current"
-              viewBox="0 0 24 24"
-            >
-              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-            </svg>
+          <div className="flex-1 flex flex-col items-center justify-center p-4 text-center">
+            <div className="w-14 h-14 rounded-2xl border border-white/20 bg-white/10 flex items-center justify-center mb-2 shadow-inner">
+              <svg className="w-7 h-7 text-white/80 fill-current" viewBox="0 0 24 24">
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+              </svg>
+            </div>
+            <span className="text-xs font-bold tracking-wider text-white/90 uppercase">
+              VERIFIED CLIENT DOSSIER
+            </span>
+          </div>
+
+          <div className="text-[9px] font-mono text-white/50 text-center uppercase tracking-widest border-t border-white/15 pt-3">
+            BASHARAT HUSSAIN • FULL-STACK PORTFOLIO
           </div>
         </div>
       </motion.div>
