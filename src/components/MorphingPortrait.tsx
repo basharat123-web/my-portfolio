@@ -53,14 +53,38 @@ export default function MorphingPortrait() {
         invalidateOnRefresh: true,
       };
 
-      gsap.to(card, {
-        left: () => to.left,
-        top: () => to.top,
-        width: () => to.width,
-        height: () => to.height,
-        ease: "none",
-        scrollTrigger: trigger,
-      });
+      const isMobile = window.innerWidth < 640;
+
+      const tl = gsap.timeline({ scrollTrigger: trigger });
+
+      if (isMobile) {
+        // Mobile curve: swings out to the right mid-scroll with 3D rotation, then settles into About section
+        tl.to(card, {
+          left: () => (startRect.left - containerRect.left) + 85,
+          top: () => (startRect.top - containerRect.top) + (endRect.top - startRect.top) * 0.45,
+          rotateZ: 14,
+          duration: 0.5,
+          ease: "power1.inOut",
+        }).to(card, {
+          left: () => to.left,
+          top: () => to.top,
+          width: () => to.width,
+          height: () => to.height,
+          rotateZ: 0,
+          duration: 0.5,
+          ease: "power1.inOut",
+        });
+      } else {
+        // Desktop direct morphing path
+        tl.to(card, {
+          left: () => to.left,
+          top: () => to.top,
+          width: () => to.width,
+          height: () => to.height,
+          duration: 1,
+          ease: "none",
+        });
+      }
 
       gsap.to(rotator, {
         rotateY: 180,
