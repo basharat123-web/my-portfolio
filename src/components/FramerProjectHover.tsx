@@ -70,59 +70,9 @@ export default function FramerProjectHover() {
   const activeProject = PROJECTS[activeIndex];
 
   return (
-    <div className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-black border border-border shadow-2xl flex flex-col md:flex-row min-h-[520px] sm:min-h-[580px] select-none">
-      {/* LEFT COLUMN: White Cards Navigation Stack (Exact match to Framer screenshot!) */}
-      <div className="w-full md:w-[36%] lg:w-[32%] bg-white text-black z-20 flex flex-col justify-between shrink-0">
-        <div className="flex flex-col h-full divide-y divide-black/10">
-          {PROJECTS.map((project, idx) => {
-            const isActive = activeIndex === idx;
-
-            return (
-              <div
-                key={project.id}
-                onMouseEnter={() => setActiveIndex(idx)}
-                onClick={() => setActiveIndex(idx)}
-                className={`relative flex-1 p-5 sm:p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between ${
-                  isActive
-                    ? "bg-white shadow-md font-semibold"
-                    : "bg-[#f8f9fa] opacity-75 hover:opacity-100 hover:bg-white"
-                }`}
-              >
-                <div>
-                  <span className="text-[11px] font-mono text-black/40 block mb-1">
-                    {project.number}
-                  </span>
-
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl sm:text-2xl font-serif tracking-tight text-black font-semibold">
-                      {project.title}
-                    </h3>
-
-                    {isActive && (
-                      <motion.span
-                        initial={{ opacity: 0, x: -6 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="text-base text-black/70 font-sans"
-                      >
-                        →
-                      </motion.span>
-                    )}
-                  </div>
-                </div>
-
-                {isActive && (
-                  <p className="text-[11px] font-sans text-black/60 mt-2 line-clamp-1">
-                    {project.subtitle}
-                  </p>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* RIGHT COLUMN: Full-Bleed Dynamic Image Display Area */}
-      <div className="relative w-full md:w-[64%] lg:w-[68%] min-h-[320px] md:min-h-full overflow-hidden bg-black z-10 flex flex-col justify-between p-6 sm:p-8">
+    <div className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-black border border-border shadow-2xl min-h-[540px] sm:min-h-[600px] flex flex-col justify-between select-none">
+      {/* Full-Bleed Dynamic Background Image Layer (Spans full component) */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeProject.id}
@@ -130,21 +80,23 @@ export default function FramerProjectHover() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.02 }}
             transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="absolute inset-0 z-0"
+            className="absolute inset-0 w-full h-full"
           >
             <Image
               src={activeProject.image}
               alt={activeProject.title}
               fill
               priority
-              sizes="(max-width: 768px) 100vw, 66vw"
+              sizes="100vw"
               className="object-cover object-top"
             />
+            {/* Dark Gradient Overlay for Readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           </motion.div>
         </AnimatePresence>
 
-        <div className="relative z-20 flex items-center justify-end">
+        {/* Top-Right Expand Icon Button */}
+        <div className="absolute top-6 right-6 z-20 flex items-center justify-end">
           <Link
             href={`/work/${activeProject.slug}`}
             className="w-10 h-10 rounded-xl bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all shadow-lg"
@@ -153,12 +105,13 @@ export default function FramerProjectHover() {
           </Link>
         </div>
 
-        <div className="relative z-20 flex flex-col sm:flex-row sm:items-end justify-between gap-4 mt-auto">
+        {/* Bottom Project Title Banner */}
+        <div className="absolute bottom-6 right-6 left-6 md:left-[42%] z-20 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
             <span className="text-[10px] font-mono tracking-widest text-white/70 uppercase block mb-1">
-              SELECTED CASE STUDY ({activeProject.number})
+              CASE STUDY ({activeProject.number})
             </span>
-            <h4 className="text-xl sm:text-2xl font-bold text-white leading-tight">
+            <h4 className="text-xl sm:text-3xl font-bold text-white leading-tight">
               {activeProject.title}
             </h4>
             <p className="text-xs text-white/80 font-medium mt-1">
@@ -173,6 +126,64 @@ export default function FramerProjectHover() {
             View Project Details →
           </Link>
         </div>
+      </div>
+
+      {/* LEFT NAVIGATION MENU STACK WITH HORIZONTAL EXPAND/SLIDE MOTION (Exact match to Framer screenshot!) */}
+      <div className="relative z-20 w-full md:w-[44%] lg:w-[38%] flex flex-col h-full items-start divide-y divide-black/10">
+        {PROJECTS.map((project, idx) => {
+          const isActive = activeIndex === idx;
+
+          return (
+            <motion.div
+              key={project.id}
+              onMouseEnter={() => setActiveIndex(idx)}
+              onClick={() => setActiveIndex(idx)}
+              animate={{
+                width: isActive ? "100%" : "62%",
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 280,
+                damping: 26,
+              }}
+              className={`relative p-5 sm:p-6 cursor-pointer flex flex-col justify-between rounded-r-2xl transition-colors duration-300 shadow-md ${
+                isActive
+                  ? "bg-white text-black z-30 font-semibold"
+                  : "bg-white/90 text-black/60 hover:bg-white hover:text-black z-10"
+              }`}
+            >
+              <div>
+                {/* Number */}
+                <span className="text-[11px] font-mono text-black/40 block mb-1">
+                  {project.number}
+                </span>
+
+                {/* Title & Arrow */}
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-xl sm:text-2xl font-serif tracking-tight text-black font-semibold truncate">
+                    {project.title}
+                  </h3>
+
+                  {isActive && (
+                    <motion.span
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="text-base text-black/60 font-sans shrink-0"
+                    >
+                      →
+                    </motion.span>
+                  )}
+                </div>
+              </div>
+
+              {isActive && (
+                <p className="text-[11px] font-sans text-black/60 mt-2 line-clamp-1">
+                  {project.subtitle}
+                </p>
+              )}
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
