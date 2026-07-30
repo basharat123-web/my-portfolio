@@ -90,7 +90,7 @@ export default function WorkPage() {
         </p>
       </motion.div>
 
-      {/* Projects Grid matching Majd Reference Layout */}
+      {/* Projects Grid matching Clean Smooth Motion Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12 mb-16">
         {ALL_PROJECTS.map((project, index) => (
           <motion.a
@@ -100,21 +100,22 @@ export default function WorkPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ y: -8 }}
             className="group block cursor-pointer"
           >
-            {/* Image Container with Gradient Backdrop */}
+            {/* Borderless Smooth Gradient Backdrop & Image Container */}
             <div
-              className={`relative aspect-[16/10] w-full rounded-[28px] sm:rounded-[36px] bg-gradient-to-br ${project.bgGradient} p-4 sm:p-7 overflow-hidden shadow-lg border border-border/40 transition-all duration-500 group-hover:shadow-2xl`}
+              className={`relative aspect-[16/10] w-full rounded-[24px] sm:rounded-[32px] bg-gradient-to-br ${project.bgGradient} p-3 sm:p-5 overflow-hidden shadow-lg transition-all duration-500 group-hover:shadow-2xl`}
             >
-              <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-black shadow-2xl border border-white/15">
+              <div className="relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden bg-black/40">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-50 group-hover:opacity-20 transition-opacity duration-500" />
               </div>
             </div>
 

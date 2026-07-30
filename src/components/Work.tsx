@@ -65,7 +65,7 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
@@ -100,7 +100,7 @@ export default function Work() {
           </motion.a>
         </div>
 
-        {/* 2-Column Grid matching Majd Reference Layout */}
+        {/* 2-Column Clean Seamless Motion Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -113,27 +113,28 @@ export default function Work() {
               key={project.slug}
               href={`/work/${project.slug}`}
               variants={cardVariants}
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
               className="group block cursor-pointer"
             >
-              {/* Image Container with Rounded 3XL Backdrop Gradient */}
+              {/* Borderless Smooth Gradient Backdrop & Image Container */}
               <div
-                className={`relative aspect-[16/10] w-full rounded-[28px] sm:rounded-[36px] bg-gradient-to-br ${project.bgGradient} p-4 sm:p-7 overflow-hidden shadow-lg border border-border/40 transition-all duration-500 group-hover:shadow-2xl`}
+                className={`relative aspect-[16/10] w-full rounded-[24px] sm:rounded-[32px] bg-gradient-to-br ${project.bgGradient} p-3 sm:p-5 overflow-hidden shadow-lg transition-all duration-500 group-hover:shadow-2xl`}
               >
-                {/* Browser UI Card inside Backdrop */}
-                <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-black shadow-2xl border border-white/15">
+                {/* Smooth Motion Image Container (No Heavy Borders!) */}
+                <div className="relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden bg-black/40">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-50 group-hover:opacity-20 transition-opacity duration-500" />
                 </div>
               </div>
 
-              {/* Title & Subtitle Below Card */}
+              {/* Title & Subtitle Below Image */}
               <div className="mt-4 px-1">
                 <h3 className="text-xl sm:text-2xl font-bold text-fg group-hover:text-accent transition-colors leading-tight">
                   {project.title}

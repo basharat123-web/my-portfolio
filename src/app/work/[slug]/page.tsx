@@ -296,21 +296,23 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
         </div>
       </div>
 
-      {/* Hero Presentation Banner Image (Majd Reference Style with Vibrant Gradient Backdrop) */}
+      {/* Hero Presentation Banner Image (Smooth Motion, Borderless Gradient Backdrop) */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className={`relative aspect-[16/10] w-full rounded-[28px] sm:rounded-[36px] bg-gradient-to-br ${project.bgGradient} p-4 sm:p-8 overflow-hidden shadow-2xl border border-border/40 mb-16`}
+        whileHover={{ scale: 1.01 }}
+        className={`relative aspect-[16/10] w-full rounded-[24px] sm:rounded-[36px] bg-gradient-to-br ${project.bgGradient} p-3 sm:p-5 overflow-hidden shadow-2xl mb-16 cursor-pointer`}
+        onClick={() => setSelectedImage(project.heroImage)}
       >
-        <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-black shadow-2xl border border-white/15">
+        <div className="relative w-full h-full rounded-xl sm:rounded-2xl overflow-hidden bg-black/40 shadow-2xl">
           <Image
             src={project.heroImage}
             alt={project.title}
             fill
             priority
             sizes="(max-width: 1024px) 100vw, 1000px"
-            className="object-cover object-top"
+            className="object-cover object-top transition-transform duration-700 ease-out hover:scale-105"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.srcset = "/projects/yarana/screenshot-1.jpg";
