@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { playHoverSound, playClickSound } from "@/utils/sound";
 
 const container = {
   rest: { transition: { staggerChildren: 0.025 } },
@@ -27,6 +28,8 @@ export default function HoverRoll({ children }: { children: string }) {
       whileHover="hover"
       animate="rest"
       variants={container}
+      onMouseEnter={playHoverSound}
+      onClick={playClickSound}
     >
       {chars.map((char, i) => (
         <span key={i} className="relative inline-block overflow-hidden">

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HoverRoll from "./HoverRoll";
+import { toggleSound, isSoundEnabled } from "@/utils/sound";
 
 const NAV_LINKS = [
   { label: "About", href: "/about" },
@@ -13,6 +14,12 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
+
+  const handleSoundToggle = () => {
+    const newState = toggleSound();
+    setSoundOn(newState);
+  };
 
   return (
     <motion.header
@@ -25,7 +32,7 @@ export default function Navbar() {
       <div className="hidden md:flex items-center gap-1 rounded-full bg-fg text-bg pl-6 pr-2 py-2 shadow-2xl">
         <a
           href="/#top"
-          className="text-sm font-bold whitespace-nowrap pr-6 hover:opacity-85 transition-opacity"
+          className="text-sm font-bold whitespace-nowrap pr-4 hover:opacity-85 transition-opacity"
         >
           Basharat Hussain
         </a>
@@ -41,6 +48,16 @@ export default function Navbar() {
             </a>
           ))}
         </nav>
+
+        {/* Sound Toggle Button */}
+        <button
+          onClick={handleSoundToggle}
+          className="rounded-full px-3 py-2 text-xs font-mono bg-bg/20 hover:bg-bg/30 text-bg transition-colors flex items-center gap-1.5 cursor-pointer ml-1"
+          title={soundOn ? "Mute Sound Effects" : "Enable Sound Effects"}
+        >
+          <span>{soundOn ? "🔊" : "🔇"}</span>
+          <span className="text-[10px] uppercase font-bold">{soundOn ? "SOUND ON" : "MUTED"}</span>
+        </button>
 
         <a
           href="/#contact"
