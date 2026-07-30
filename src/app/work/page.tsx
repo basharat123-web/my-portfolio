@@ -25,7 +25,6 @@ const ALL_PROJECTS = [
     title: "ABS24 News Network",
     subtitle: "WordPress News Portal",
     date: "2025",
-    image: "/projects/abs24.jpg",
     description:
       "Custom PHP theme built from scratch for a full Urdu news network. Handles breaking news, live ticker, categories, and social media integration for daily readers.",
     details: [
@@ -40,7 +39,6 @@ const ALL_PROJECTS = [
     title: "Axiom Research Group",
     subtitle: "Corporate Website",
     date: "2025",
-    image: "/projects/axiom.jpg",
     description:
       "Professional corporate website for a global market research & consulting firm. Serves clients across multiple countries with a survey portal, case studies, and client showcase.",
     details: [
@@ -55,7 +53,6 @@ const ALL_PROJECTS = [
     title: "Shoq Ki Baat Live Tracking",
     subtitle: "Live Tracking System",
     date: "2025",
-    image: "/projects/shoq.jpg",
     description:
       "Live pigeon race tracking & tournament management system with real-time leaderboard, pigeon stats, weather integration, and admin panel. Powers active tournaments for hundreds of participants.",
     details: [
@@ -70,7 +67,6 @@ const ALL_PROJECTS = [
     title: "Autonomous AI Assistant (OpenClaw)",
     subtitle: "WhatsApp Automated AI Agent",
     date: "May 2026",
-    image: "/projects/openclaw.jpg",
     description:
       "Engineered and deployed a localized automated WhatsApp chat agent utilizing the open-source OpenClaw framework. Configured environment files, localized model endpoints, and specific persona parameters to activate the virtual assistant.",
     details: [
@@ -85,7 +81,6 @@ const ALL_PROJECTS = [
     title: "BH Tech Hub & B&S Solution Network",
     subtitle: "Custom SaaS Platform Migration",
     date: "2025 – Present",
-    image: "/projects/bhtechhub.jpg",
     description:
       "Managing comprehensive operations, content strategy, and technical infrastructure. Executing a full technical migration from WordPress to a fully custom-programmed SaaS architecture utilizing advanced server-side logic and database schemas.",
     details: [
@@ -131,31 +126,33 @@ export default function WorkPage() {
             className="group flex flex-col justify-between rounded-3xl border border-border bg-bg-soft overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 block"
           >
             <div>
-              {/* Project Image Box */}
-              <div className="relative aspect-16/9 w-full overflow-hidden bg-border/40 mb-6">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+              {/* Project Image Box (Only rendered if real image is defined) */}
+              {project.image ? (
+                <div className="relative aspect-16/9 w-full overflow-hidden bg-border/40 mb-6">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
 
-                <div className="absolute top-3 left-3 z-10">
-                  <span className="text-[10px] font-mono font-bold tracking-wider text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20 uppercase">
-                    {project.subtitle}
-                  </span>
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="text-[10px] font-mono font-bold tracking-wider text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20 uppercase">
+                      {project.subtitle}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              ) : null}
 
-              <div className="px-8">
+              <div className="p-8">
                 <div className="flex items-center justify-between gap-4 mb-3">
                   <span className="text-xs font-mono font-semibold uppercase tracking-wider text-muted">
                     {project.date}
                   </span>
-                  <span className="text-xs text-muted group-hover:text-accent transition-colors font-bold">
-                    Read Details ↗
+                  <span className="text-xs font-medium px-3 py-1 rounded-full bg-border/60 text-fg">
+                    {project.subtitle}
                   </span>
                 </div>
 
@@ -206,4 +203,3 @@ export default function WorkPage() {
     </main>
   );
 }
-

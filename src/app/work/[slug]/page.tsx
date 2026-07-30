@@ -14,8 +14,8 @@ interface ProjectDetail {
   date: string;
   githubUrl?: string;
   liveUrl?: string;
-  mainImage: string;
-  gallery: string[];
+  mainImage?: string;
+  gallery?: string[];
   description: string;
   problem: string;
   solution: string;
@@ -61,15 +61,6 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
     category: "WORDPRESS NEWS PORTAL",
     date: "2025",
     liveUrl: "https://abs24news.com",
-    mainImage: "/projects/abs24.jpg",
-    gallery: [
-      "/projects/abs24-news-portal/screenshot-1.jpg",
-      "/projects/abs24-news-portal/screenshot-2.jpg",
-      "/projects/abs24-news-portal/screenshot-3.jpg",
-      "/projects/abs24-news-portal/screenshot-4.jpg",
-      "/projects/abs24-news-portal/screenshot-5.jpg",
-      "/projects/abs24-news-portal/screenshot-6.jpg",
-    ],
     description:
       "Custom PHP theme built from scratch for a full Urdu news network. Handles breaking news, live breaking news ticker, categories, and social media integration for daily readers in Pakistan and abroad.",
     problem:
@@ -91,15 +82,6 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
     category: "CORPORATE WEBSITE",
     date: "2025",
     liveUrl: "https://www.axiomresearchgroup.site",
-    mainImage: "/projects/axiom.jpg",
-    gallery: [
-      "/projects/axiom-research-group/screenshot-1.jpg",
-      "/projects/axiom-research-group/screenshot-2.jpg",
-      "/projects/axiom-research-group/screenshot-3.jpg",
-      "/projects/axiom-research-group/screenshot-4.jpg",
-      "/projects/axiom-research-group/screenshot-5.jpg",
-      "/projects/axiom-research-group/screenshot-6.jpg",
-    ],
     description:
       "Professional corporate website for a global market research & consulting firm. Serves clients across multiple countries with a survey portal, case studies, and client showcase.",
     problem:
@@ -121,15 +103,6 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
     category: "LIVE TRACKING SYSTEM",
     date: "2025",
     liveUrl: "https://shoqkibat.com",
-    mainImage: "/projects/shoq.jpg",
-    gallery: [
-      "/projects/shoq-ki-baat-live-tracking/screenshot-1.jpg",
-      "/projects/shoq-ki-baat-live-tracking/screenshot-2.jpg",
-      "/projects/shoq-ki-baat-live-tracking/screenshot-3.jpg",
-      "/projects/shoq-ki-baat-live-tracking/screenshot-4.jpg",
-      "/projects/shoq-ki-baat-live-tracking/screenshot-5.jpg",
-      "/projects/shoq-ki-baat-live-tracking/screenshot-6.jpg",
-    ],
     description:
       "Live pigeon race tracking & tournament management system with real-time leaderboard, pigeon stats, weather integration, and admin panel. Powers active tournaments for hundreds of participants.",
     problem:
@@ -151,15 +124,6 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
     category: "AI & AUTOMATION",
     date: "May 2026",
     githubUrl: "https://github.com/basharathussain",
-    mainImage: "/projects/openclaw.jpg",
-    gallery: [
-      "/projects/autonomous-ai-assistant-openclaw/screenshot-1.jpg",
-      "/projects/autonomous-ai-assistant-openclaw/screenshot-2.jpg",
-      "/projects/autonomous-ai-assistant-openclaw/screenshot-3.jpg",
-      "/projects/autonomous-ai-assistant-openclaw/screenshot-4.jpg",
-      "/projects/autonomous-ai-assistant-openclaw/screenshot-5.jpg",
-      "/projects/autonomous-ai-assistant-openclaw/screenshot-6.jpg",
-    ],
     description:
       "Engineered and deployed a localized automated WhatsApp chat agent utilizing the open-source OpenClaw framework. Configured environment files, localized model endpoints, and specific persona parameters to activate the virtual assistant.",
     problem:
@@ -182,15 +146,6 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
     date: "2025 – Present",
     githubUrl: "https://github.com/basharathussain",
     liveUrl: "https://bhtechhub.com",
-    mainImage: "/projects/bhtechhub.jpg",
-    gallery: [
-      "/projects/bh-tech-hub-saas-migration/screenshot-1.jpg",
-      "/projects/bh-tech-hub-saas-migration/screenshot-2.jpg",
-      "/projects/bh-tech-hub-saas-migration/screenshot-3.jpg",
-      "/projects/bh-tech-hub-saas-migration/screenshot-4.jpg",
-      "/projects/bh-tech-hub-saas-migration/screenshot-5.jpg",
-      "/projects/bh-tech-hub-saas-migration/screenshot-6.jpg",
-    ],
     description:
       "Managing comprehensive operations, content strategy, and technical infrastructure. Executing a full technical migration from WordPress to a fully custom-programmed SaaS architecture utilizing advanced server-side logic and database schemas.",
     problem:
@@ -274,18 +229,20 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
         </div>
       </motion.div>
 
-      {/* Hero Banner Image */}
-      <div className="relative aspect-16/9 w-full rounded-3xl overflow-hidden border border-border bg-border/40 mb-16 shadow-2xl">
-        <Image
-          src={project.mainImage}
-          alt={project.title}
-          fill
-          priority
-          sizes="(max-width: 1024px) 100vw, 1000px"
-          className="object-cover object-top"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
-      </div>
+      {/* Hero Banner Image (Only rendered if real mainImage exists) */}
+      {project.mainImage ? (
+        <div className="relative aspect-16/9 w-full rounded-3xl overflow-hidden border border-border bg-border/40 mb-16 shadow-2xl">
+          <Image
+            src={project.mainImage}
+            alt={project.title}
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 1000px"
+            className="object-cover object-top"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+        </div>
+      ) : null}
 
       {/* Overview & Problem / Solution */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
@@ -326,48 +283,50 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
         </div>
       </div>
 
-      {/* 5-6 Project Screenshots Gallery Section */}
-      <section className="pt-10 border-t border-border mb-16">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <span className="text-xs font-mono font-bold tracking-widest text-accent uppercase bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
-              PROJECT SCREENSHOTS & UI GALLERY
+      {/* Screenshots Gallery Section (Only rendered if real gallery pictures exist) */}
+      {project.gallery && project.gallery.length > 0 ? (
+        <section className="pt-10 border-t border-border mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <span className="text-xs font-mono font-bold tracking-widest text-accent uppercase bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
+                PROJECT SCREENSHOTS & UI GALLERY
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-fg mt-3">
+                Detailed Interface & System Workflows
+              </h2>
+            </div>
+            <span className="text-xs font-mono text-muted hidden sm:inline-block">
+              Click any screenshot to expand
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-fg mt-3">
-              Detailed Interface & System Workflows
-            </h2>
           </div>
-          <span className="text-xs font-mono text-muted hidden sm:inline-block">
-            Click any screenshot to expand
-          </span>
-        </div>
 
-        {/* 6 Image Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {project.gallery.map((imgUrl, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ y: -4, scale: 1.02 }}
-              onClick={() => setSelectedImage(imgUrl)}
-              className="group relative aspect-16/10 rounded-2xl overflow-hidden border border-border bg-bg-soft cursor-pointer shadow-md"
-            >
-              <Image
-                src={imgUrl}
-                alt={`${project.title} Screenshot ${i + 1}`}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-mono font-bold">
-                🔍 Click to Expand
-              </div>
-              <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-white/90">
-                0{i + 1} / 06
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+          {/* 6 Image Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {project.gallery.map((imgUrl, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -4, scale: 1.02 }}
+                onClick={() => setSelectedImage(imgUrl)}
+                className="group relative aspect-16/10 rounded-2xl overflow-hidden border border-border bg-bg-soft cursor-pointer shadow-md"
+              >
+                <Image
+                  src={imgUrl}
+                  alt={`${project.title} Screenshot ${i + 1}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-mono font-bold">
+                  🔍 Click to Expand
+                </div>
+                <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-white/90">
+                  0{i + 1} / 0{project.gallery?.length || 6}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {/* Key Engineering Features */}
       <section className="pt-10 border-t border-border">

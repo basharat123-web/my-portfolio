@@ -22,7 +22,6 @@ const PROJECTS = [
     description:
       "Custom PHP theme built from scratch for a full Urdu news network with live breaking news ticker and RTL font optimization.",
     tags: ["WordPress", "Custom PHP", "Urdu CMS"],
-    image: "/projects/abs24.jpg",
     url: "https://abs24news.com",
   },
   {
@@ -32,7 +31,6 @@ const PROJECTS = [
     description:
       "Professional corporate website for a global market research & consulting firm with survey portals and case studies.",
     tags: ["HTML5", "CSS3", "JavaScript", "PHP"],
-    image: "/projects/axiom.jpg",
     url: "https://www.axiomresearchgroup.site",
   },
   {
@@ -42,7 +40,6 @@ const PROJECTS = [
     description:
       "Live pigeon race tracking & tournament management system with real-time leaderboard rankings and automated score calculation.",
     tags: ["PHP", "MySQL", "Live Data", "Urdu CMS"],
-    image: "/projects/shoq.jpg",
     url: "https://shoqkibat.com",
   },
   {
@@ -52,7 +49,6 @@ const PROJECTS = [
     description:
       "Localized automated WhatsApp chat agent utilizing OpenClaw framework with zero-latency model endpoints and persona rules.",
     tags: ["OpenClaw", "WhatsApp AI", "Node.js"],
-    image: "/projects/openclaw.jpg",
   },
   {
     slug: "bh-tech-hub-saas-migration",
@@ -61,7 +57,6 @@ const PROJECTS = [
     description:
       "Tech blog & custom SaaS migration from WordPress to Next.js App Router with server-side logic and technical SEO.",
     tags: ["Next.js", "WordPress Migration", "SEO"],
-    image: "/projects/bhtechhub.jpg",
     url: "https://bhtechhub.com",
   },
 ];
@@ -144,43 +139,56 @@ export default function Work() {
               className="group flex flex-col justify-between rounded-3xl border border-border bg-bg-soft overflow-hidden shadow-sm hover:shadow-2xl hover:border-fg/30 transition-all duration-300 relative"
             >
               <div>
-                {/* Project Image Box */}
-                <div className="relative aspect-16/10 w-full overflow-hidden bg-border/40">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                {/* Project Image Box (Only shown if real image is provided) */}
+                {project.image ? (
+                  <div className="relative aspect-16/10 w-full overflow-hidden bg-border/40">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
 
-                  {/* Category Pill Over Image */}
-                  <div className="absolute top-3 left-3 z-10">
-                    <span className="text-[9px] font-mono font-bold tracking-wider text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20 uppercase">
-                      {project.category}
-                    </span>
-                  </div>
+                    {/* Category Pill Over Image */}
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="text-[9px] font-mono font-bold tracking-wider text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20 uppercase">
+                        {project.category}
+                      </span>
+                    </div>
 
-                  <div className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white text-xs group-hover:bg-accent group-hover:text-black transition-colors">
-                    ↗
+                    <div className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white text-xs group-hover:bg-accent group-hover:text-black transition-colors">
+                      ↗
+                    </div>
                   </div>
-                </div>
+                ) : null}
 
                 {/* Card Content Body */}
-                <div className="p-5">
+                <div className="p-6">
+                  {!project.image && (
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="text-[10px] font-mono font-bold tracking-wider text-accent bg-accent/10 px-2.5 py-0.5 rounded-md border border-accent/15 uppercase">
+                        {project.category}
+                      </span>
+                      <span className="text-xs text-muted group-hover:text-fg group-hover:translate-x-0.5 transition-all">
+                        ↗
+                      </span>
+                    </div>
+                  )}
+
                   <h3 className="text-base sm:text-lg font-bold text-fg mb-2 leading-snug group-hover:text-accent transition-colors">
                     {project.title}
                   </h3>
 
-                  <p className="text-muted text-xs sm:text-sm leading-relaxed mb-4 line-clamp-2">
+                  <p className="text-muted text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">
                     {project.description}
                   </p>
                 </div>
               </div>
 
               {/* Tags Footer */}
-              <div className="px-5 pb-5 pt-2 flex flex-wrap gap-1.5 mt-auto">
+              <div className="px-6 pb-6 pt-2 flex flex-wrap gap-1.5 mt-auto">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
