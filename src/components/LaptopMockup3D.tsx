@@ -28,9 +28,9 @@ export default function LaptopMockup3D({
   const mouseY = useSpring(y, { stiffness: 240, damping: 24 });
 
   // 3D Rotations
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [12, -12]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-16, 16]);
-  const sheenOpacity = useTransform(mouseY, [-0.5, 0.5], [0.1, 0.3]);
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [10, -10]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-14, 14]);
+  const sheenOpacity = useTransform(mouseY, [-0.5, 0.5], [0.08, 0.25]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current || isInteractive) return;
@@ -52,7 +52,7 @@ export default function LaptopMockup3D({
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full max-w-4xl mx-auto py-8 sm:py-12 px-2 select-none"
+      className="relative w-full max-w-4xl mx-auto py-6 sm:py-10 px-2 select-none"
       style={{ perspective: "1200px" }}
     >
       {/* Control Badge */}
@@ -60,7 +60,7 @@ export default function LaptopMockup3D({
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-xs font-mono font-bold tracking-wider text-accent uppercase bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
-            REAL 3D LAPTOP LIVE SHOWCASE
+            3D LAPTOP LIVE SHOWCASE
           </span>
         </div>
 
@@ -72,7 +72,7 @@ export default function LaptopMockup3D({
         </button>
       </div>
 
-      {/* Photorealistic 3D Laptop Assembly Container */}
+      {/* 3D Laptop Assembly with User's MacBook Pro Frame */}
       <motion.div
         style={{
           rotateX: isInteractive ? 0 : rotateX,
@@ -80,39 +80,36 @@ export default function LaptopMockup3D({
           transformStyle: "preserve-3d",
         }}
         transition={{ type: "spring", stiffness: 200, damping: 25 }}
-        className="relative w-full flex flex-col items-center justify-center"
+        className="relative w-full aspect-[16/10] flex items-center justify-center"
       >
-        {/* 1. REAL HARDWARE LAPTOP DISPLAY (MACBOOK PRO BEZEL FRAME) */}
-        <div
-          className="relative w-full aspect-[16/10] rounded-[22px] sm:rounded-[30px] bg-[#0c0c0e] p-[8px] sm:p-[12px] shadow-2xl border-[3px] border-[#2d2d32] ring-1 ring-white/10"
-          style={{ transformStyle: "preserve-3d" }}
-        >
-          {/* Real Glass Sheen Reflection Overlay */}
-          <motion.div
-            style={{ opacity: sheenOpacity }}
-            className="absolute inset-0 z-30 pointer-events-none rounded-[20px] sm:rounded-[28px] bg-gradient-to-tr from-transparent via-white/10 to-white/25"
+        {/* User's Uploaded MacBook Pro Laptop Frame */}
+        <div className="relative w-full h-full">
+          <Image
+            src="/macbook-pro-user.png"
+            alt="MacBook Pro 3D Laptop Frame"
+            fill
+            sizes="(max-width: 1024px) 100vw, 1000px"
+            className="object-contain pointer-events-none z-20"
+            priority
           />
 
-          {/* Camera Lens & Micro LED */}
-          <div className="absolute top-[4px] left-1/2 -translate-x-1/2 z-40 flex items-center justify-center gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-[#111] border border-white/20 flex items-center justify-center">
-              <div className="w-1 h-1 rounded-full bg-[#001133]" />
-            </div>
-            <div className="w-1 h-1 rounded-full bg-emerald-400/90 animate-pulse" />
-          </div>
+          {/* Glass Sheen Glare Reflection Overlay */}
+          <motion.div
+            style={{ opacity: sheenOpacity }}
+            className="absolute inset-[6%_11%_11%_11%] z-30 pointer-events-none bg-gradient-to-tr from-transparent via-white/10 to-white/20 rounded-t-lg"
+          />
 
-          {/* Display Viewport */}
-          <div className="relative w-full h-full rounded-[14px] sm:rounded-[20px] bg-black overflow-hidden flex flex-col border border-white/10 shadow-inner">
-            {/* Browser Header Bar */}
-            <div className="h-7 sm:h-8 bg-[#141416] border-b border-white/10 px-3 flex items-center justify-between text-white/70 text-[10px] sm:text-[11px] font-mono z-20 shrink-0">
-              <div className="flex items-center gap-1.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+          {/* Screen Content Viewport Area (Positioned perfectly inside the Laptop Screen) */}
+          <div className="absolute inset-[5.8%_11.8%_11.5%_11.8%] z-10 bg-black overflow-hidden flex flex-col rounded-t-sm shadow-inner">
+            {/* Browser Address Bar */}
+            <div className="h-6 sm:h-7 bg-[#141416] border-b border-white/10 px-2.5 flex items-center justify-between text-white/70 text-[9px] sm:text-[10px] font-mono shrink-0 z-20">
+              <div className="flex items-center gap-1">
+                <div className="w-2 h-2 rounded-full bg-[#ff5f56]" />
+                <div className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
+                <div className="w-2 h-2 rounded-full bg-[#27c93f]" />
               </div>
 
-              {/* URL Bar */}
-              <div className="flex-1 max-w-xs sm:max-w-md mx-2 sm:mx-3 bg-[#0a0a0c] rounded-md px-3 py-0.5 sm:py-1 flex items-center gap-2 border border-white/10 overflow-hidden text-[10px]">
+              <div className="flex-1 max-w-[200px] sm:max-w-md mx-2 bg-[#09090b] rounded px-2 py-0.5 flex items-center gap-1.5 border border-white/10 overflow-hidden text-[9px]">
                 <span className="text-emerald-400">🔒</span>
                 <span className="truncate text-white/90 font-mono">{url}</span>
               </div>
@@ -121,13 +118,13 @@ export default function LaptopMockup3D({
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white transition-colors flex items-center gap-1 text-[10px] uppercase font-bold"
+                className="hover:text-white transition-colors flex items-center gap-1 text-[9px] uppercase font-bold"
               >
-                <span>Live Site</span> ↗
+                <span>Live</span> ↗
               </a>
             </div>
 
-            {/* Screen Content: Live iframe & Screenshot */}
+            {/* Live iframe & Screenshot Display */}
             <div className="relative flex-1 w-full h-full bg-[#08080a] overflow-hidden">
               {url ? (
                 <iframe
@@ -154,31 +151,16 @@ export default function LaptopMockup3D({
               )}
 
               {!isInteractive && (
-                <div className="absolute bottom-3 right-3 z-20 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 text-[10px] font-mono text-white/90 shadow-xl pointer-events-none">
-                  🖱️ Hover & Move Mouse for 3D Tilt
+                <div className="absolute bottom-2 right-2 z-20 bg-black/80 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20 text-[9px] font-mono text-white/90 shadow-xl pointer-events-none">
+                  🖱️ Move Mouse for 3D Tilt
                 </div>
               )}
             </div>
           </div>
         </div>
 
-        {/* 2. REAL METALLIC HINGE */}
-        <div className="w-[32%] h-[7px] bg-gradient-to-b from-[#18181b] via-[#27272a] to-[#09090b] rounded-b-md shadow-md z-10 border-t border-white/20" />
-
-        {/* 3. REAL HARDWARE MACBOOK BASE DECK */}
-        <div
-          className="relative w-[104%] h-[26px] sm:h-[32px] rounded-b-[22px] sm:rounded-b-[30px] bg-gradient-to-b from-[#2e2e33] via-[#1c1c1f] to-[#0a0a0c] shadow-2xl border-t border-white/25 flex flex-col items-center justify-between px-6 pb-1"
-          style={{ transformStyle: "preserve-3d" }}
-        >
-          {/* Front Thumb Notch */}
-          <div className="w-[16%] h-[5px] bg-[#0a0a0c] rounded-b-md border-x border-b border-white/15" />
-
-          {/* Aluminum Lip Chamfer Edge */}
-          <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-        </div>
-
-        {/* Floor Shadow */}
-        <div className="w-[92%] h-[32px] bg-black/70 blur-2xl rounded-full -mt-3 pointer-events-none" />
+        {/* Ambient Under-Laptop Floor Shadow */}
+        <div className="absolute -bottom-4 w-[85%] h-[20px] bg-black/60 blur-xl rounded-full pointer-events-none -z-10" />
       </motion.div>
     </div>
   );
