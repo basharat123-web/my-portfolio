@@ -357,11 +357,6 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                onError={(e) => {
-                  // Fallback to main image if screenshot is missing
-                  const target = e.target as HTMLImageElement;
-                  target.srcset = project.mainImage;
-                }}
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-mono font-bold">
                 🔍 Click to Expand
@@ -410,10 +405,6 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                 fill
                 sizes="100vw"
                 className="object-contain bg-black"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.srcset = project.mainImage;
-                }}
               />
               <button
                 onClick={() => setSelectedImage(null)}
