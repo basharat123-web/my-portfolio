@@ -10,7 +10,7 @@ const ALL_PROJECTS = [
     title: "Yarana Nal Baharan Pigeon Club",
     subtitle: "International Client — Greece 🇬🇷",
     date: "2025",
-    image: "/projects/yarana.jpg",
+    image: "/projects/yarana/screenshot-1.jpg",
     description:
       "Built for a client based in Greece — live pigeon race tracking & club management system with real-time leaderboard, pigeon count stats, live viewer counter, Facebook integration, and weather widget. Delivered remotely for an international client.",
     details: [
@@ -123,12 +123,12 @@ export default function WorkPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group flex flex-col justify-between rounded-3xl border border-border bg-bg-soft overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 block"
+            className="group flex flex-col justify-between rounded-3xl border border-border bg-bg-soft overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
           >
             <div>
               {/* Project Image Box (Only rendered if real image is defined) */}
               {project.image ? (
-                <div className="relative aspect-16/9 w-full overflow-hidden bg-border/40 mb-6">
+                <div className="relative aspect-video w-full overflow-hidden bg-border/40 mb-6">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -136,7 +136,7 @@ export default function WorkPage() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent opacity-80" />
 
                   <div className="absolute top-3 left-3 z-10">
                     <span className="text-[10px] font-mono font-bold tracking-wider text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20 uppercase">

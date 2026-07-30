@@ -4,6 +4,7 @@ import { use, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import HoverRoll from "@/components/HoverRoll";
+import LaptopMockup3D from "@/components/LaptopMockup3D";
 import { notFound } from "next/navigation";
 
 interface ProjectDetail {
@@ -31,7 +32,7 @@ const PROJECTS_DATA: Record<string, ProjectDetail> = {
     category: "INTERNATIONAL CLIENT — GREECE 🇬🇷",
     date: "2025",
     liveUrl: "https://yarannalbaharan.com",
-    mainImage: "/projects/yarana.jpg",
+    mainImage: "/projects/yarana/screenshot-1.jpg",
     gallery: [
       "/projects/yarana/screenshot-1.jpg",
       "/projects/yarana/screenshot-2.jpg",
@@ -229,20 +230,14 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
         </div>
       </motion.div>
 
-      {/* Hero Banner Image (Only rendered if real mainImage exists) */}
-      {project.mainImage ? (
-        <div className="relative aspect-16/9 w-full rounded-3xl overflow-hidden border border-border bg-border/40 mb-16 shadow-2xl">
-          <Image
-            src={project.mainImage}
-            alt={project.title}
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 1000px"
-            className="object-cover object-top"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
-        </div>
-      ) : null}
+      {/* 3D Laptop Mockup Showcase Section with Mouse & Touch Tilt Interactions */}
+      <div className="mb-16">
+        <LaptopMockup3D
+          url={project.liveUrl}
+          title={project.title}
+          fallbackImage={project.mainImage || "/projects/yarana.jpg"}
+        />
+      </div>
 
       {/* Overview & Problem / Solution */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
