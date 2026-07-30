@@ -50,22 +50,24 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Sound Toggle Button */}
-        <button
-          onClick={handleSoundToggle}
-          className="rounded-full px-3 py-2 text-xs font-mono bg-bg/20 hover:bg-bg/30 text-bg transition-colors flex items-center gap-1.5 cursor-pointer ml-1"
-          title={soundOn ? "Mute Sound Effects" : "Enable Sound Effects"}
-        >
-          <span>{soundOn ? "🔊" : "🔇"}</span>
-          <span className="text-[10px] uppercase font-bold">{soundOn ? "SOUND ON" : "MUTED"}</span>
-        </button>
-
         <a
           href="/#contact"
           className="ml-2 rounded-full bg-bg text-fg px-5 py-2.5 text-sm font-medium hover:opacity-85 transition-opacity whitespace-nowrap"
         >
           <HoverRoll>Contact Me</HoverRoll>
         </a>
+      </div>
+
+      {/* Floating Sound Toggle Button on Bottom-Right Side */}
+      <div className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 z-50">
+        <button
+          onClick={handleSoundToggle}
+          className="rounded-full bg-fg text-bg px-3.5 py-2 text-xs font-mono shadow-2xl border border-white/20 hover:scale-105 transition-all flex items-center gap-2 cursor-pointer backdrop-blur-md"
+          title={soundOn ? "Mute Sound Effects" : "Enable Sound Effects"}
+        >
+          <span>{soundOn ? "🔊" : "🔇"}</span>
+          <span className="text-[10px] uppercase font-bold tracking-wider">{soundOn ? "SOUND ON" : "MUTED"}</span>
+        </button>
       </div>
 
       {/* 2. MOBILE NAVBAR: Sleek Compact Pill with Floating Dropdown Box */}
