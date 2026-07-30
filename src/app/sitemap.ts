@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://basharat-hussain.dev"; // Replace with user's domain
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://basharathussain.online"; // Replace with user's domain
 
   const workSlugs = [
     "yarana-nal-baharan-pigeon-club",

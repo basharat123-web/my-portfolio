@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://basharat-hussain.dev"),
+  metadataBase: new URL("https://basharathussain.online"),
   title: {
     default: "Basharat Hussain — Full-Stack Web Developer & Software Engineer",
     template: "%s | Basharat Hussain",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://basharat-hussain.dev",
+    url: "https://basharathussain.online",
     title: "Basharat Hussain — Full-Stack Web Developer & Software Engineer",
     description:
       "Full-Stack Web Developer specializing in Next.js, React, TypeScript, MERN stack, and AI automation.",
@@ -62,8 +62,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Basharat Hussain",
-  url: "https://basharat-hussain.dev",
-  image: "https://basharat-hussain.dev/basharat.png",
+  url: "https://basharathussain.online",
+  image: "https://basharathussain.online/basharat.png",
   sameAs: [
     "https://www.linkedin.com/in/basharat-hussain-pk",
     "https://github.com/basharathussain",
