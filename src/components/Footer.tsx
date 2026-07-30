@@ -99,26 +99,6 @@ export default function Footer() {
                 Full-stack web developer and software engineer.
                 Building modern Next.js SaaS platforms, AI automation agents, and scalable web architectures.
               </p>
-
-              {/* Social Icons */}
-              <div className="flex items-center gap-3 mt-6">
-                {socialLinks.map((social) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.name}
-                    initial="rest"
-                    animate="rest"
-                    whileHover="hover"
-                    whileTap={{ scale: 0.95 }}
-                    className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#e3ded3] hover:bg-[#d7d1c3] text-[#131311] flex items-center justify-center transition-colors shadow-sm overflow-hidden relative"
-                  >
-                    <HoverRollIcon>{social.icon}</HoverRollIcon>
-                  </motion.a>
-                ))}
-              </div>
             </div>
           </div>
 
