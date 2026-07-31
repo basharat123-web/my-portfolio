@@ -16,47 +16,11 @@ const SERVICES_DETAILED = [
       "Performance & Page Load Speed Optimization",
     ],
   },
-  {
-    title: "Digital Graphic Design & Vector Work",
-    subtitle: "Adobe Photoshop & CorelDRAW Specialist",
-    description:
-      "Professional graphic illustration, commercial print formatting, UI/UX layouts, and vector troubleshooting. Resolving font corruptions, canvas setups, and color profile conversions for commercial print production.",
-    deliverables: [
-      "Commercial Marketing Materials & Print Formats",
-      "Vector Illustration & Logo Assets via CorelDRAW",
-      "UI/UX Layout Mockups & Web Assets via Photoshop",
-      "Color Profile & Resolution Diagnostics",
-    ],
-  },
-  {
-    title: "Technical SEO & Analytics Management",
-    subtitle: "Search Console, Rank Math & Ahrefs Auditing",
-    description:
-      "Comprehensive technical SEO management to maximize organic traffic, indexation speed, and domain authority. Implementing sitemap structures, metadata optimization, and keyword impression tracking.",
-    deliverables: [
-      "Technical SEO Auditing via Ahrefs & Rank Math",
-      "Google Search Console Indexing & Impression Tracking",
-      "Structured Data & OpenGraph Metadata Configuration",
-      "Content Strategy & Keyword Targeting",
-    ],
-  },
-  {
-    title: "Hardware & Systems Optimization",
-    subtitle: "Diagnostics, Power & Solar Environment Setup",
-    description:
-      "Local development environment setup, computer hardware diagnostics, drive formatting, system file corruption recovery, and industrial power & solar inverter system configuration.",
-    deliverables: [
-      "Local Dev Environment Setup & Variable Configuration",
-      "Hardware Diagnostics & File Corruption Repairs",
-      "Industrial Power & Solar Inverter Configuration",
-      "System Recovery & Diagnostic Drive Formatting",
-    ],
-  },
 ];
 
 export default function ServicesPage() {
   return (
-    <main className="pt-32 pb-28 px-6 max-w-6xl mx-auto min-h-screen">
+    <main className="pt-32 pb-28 px-6 max-w-4xl mx-auto min-h-screen">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -71,12 +35,12 @@ export default function ServicesPage() {
           What I Can Build For You
         </h1>
         <p className="text-muted text-base sm:text-lg max-w-2xl leading-relaxed">
-          Comprehensive technology solutions ranging from full-stack web development and AI automation to graphic illustration and technical SEO management.
+          Comprehensive technology solutions focused on full-stack web development, modern frontend architectures, and high-performance backend systems.
         </p>
       </motion.div>
 
       {/* Services Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <div className="grid grid-cols-1 gap-8 mb-16">
         {SERVICES_DETAILED.map((service, index) => (
           <motion.div
             key={service.title}
@@ -84,27 +48,27 @@ export default function ServicesPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="flex flex-col justify-between rounded-3xl border border-border bg-bg-soft p-8 shadow-sm hover:shadow-xl transition-all duration-300"
+            className="flex flex-col justify-between rounded-3xl border border-border bg-bg-soft p-8 sm:p-12 shadow-sm hover:shadow-xl transition-all duration-300"
           >
             <div>
               <span className="text-xs font-semibold uppercase tracking-wider text-accent mb-2 block">
                 {service.subtitle}
               </span>
-              <h2 className="text-2xl font-bold text-fg mb-4">
+              <h2 className="text-3xl font-bold text-fg mb-4">
                 {service.title}
               </h2>
-              <p className="text-muted text-sm sm:text-base leading-relaxed mb-6">
+              <p className="text-muted text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">
                 {service.description}
               </p>
 
               {/* Deliverables list */}
-              <h3 className="text-xs font-bold uppercase tracking-wider text-fg/80 mb-3">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-fg/80 mb-4">
                 Key Deliverables:
               </h3>
-              <ul className="space-y-2 mb-6 text-xs sm:text-sm text-fg/90">
+              <ul className="space-y-3 mb-6 text-sm sm:text-base text-fg/90">
                 {service.deliverables.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="text-accent font-bold">✓</span>
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="text-accent font-bold mt-0.5">✓</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -120,7 +84,7 @@ export default function ServicesPage() {
           Need a Custom Solution?
         </h2>
         <p className="text-muted text-sm sm:text-base max-w-md mx-auto mb-6">
-          Whether you need a full web platform, AI agent integration, or print design, let’s discuss your project goals.
+          Whether you need a full web platform, an interactive UI, or a robust backend, let's discuss your project goals.
         </p>
         <a
           href="/#contact"

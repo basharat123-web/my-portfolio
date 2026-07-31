@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    urlImports: [
+      "https://framer.com/m/",
+      "https://framerusercontent.com/",
+    ],
+  },
 };
 
 export default nextConfig;

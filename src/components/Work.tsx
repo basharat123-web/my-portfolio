@@ -39,7 +39,7 @@ export default function Work() {
           </motion.a>
         </div>
 
-        {/* Framer Project Hover Accordion Component */}
+        {/* Framer Expanded Card Component */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -25,7 +25,7 @@ export default function Hero() {
     <section
       id="top"
       ref={containerRef}
-      className="relative min-h-[90vh] sm:min-h-screen w-full flex flex-col items-center justify-center text-center px-4 sm:px-6 py-20 sm:py-28 overflow-hidden"
+      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center text-center px-4 sm:px-6 overflow-hidden"
     >
       {/* Centered Hero Content Container */}
       <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center justify-center text-center">
@@ -41,10 +41,10 @@ export default function Hero() {
           <BoltIcon className="hero-icon absolute z-10 -bottom-4 -right-6 sm:-bottom-8 sm:-right-12 lg:-bottom-10 lg:-right-14 w-6 h-6 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rotate-6 text-accent" />
 
           <h1 className="hero-line font-black uppercase leading-[0.9] tracking-tight text-[12vw] sm:text-[9vw] lg:text-[7.5rem] text-fg">
-            Software
+            Web
           </h1>
           <h1 className="hero-line font-black uppercase leading-[0.9] tracking-tight text-[12vw] sm:text-[9vw] lg:text-[7.5rem] text-fg">
-            Engineer
+            Developer
           </h1>
         </div>
 

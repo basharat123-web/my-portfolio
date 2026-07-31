@@ -5,28 +5,28 @@ import DocumentCard from "./DocumentCard";
 
 const TESTIMONIALS = [
   {
-    quote: "Basharat's technical migration from WordPress to Next.js drastically improved our load speeds and SEO indexing metrics.",
-    name: "BH Tech Hub Team",
-    role: "Core Collaborators",
-    date: "JULY 2026",
-    folderColor: "from-[#2b52a1] to-[#1d3b7a]",
-    accentColor: "bg-[#183063]",
-  },
-  {
-    quote: "High-quality vector illustrations and commercial print layouts. Font issues and canvas setups were resolved fast.",
-    name: "AR Graphics Team",
-    role: "Print & Graphics Lead",
-    date: "MARCH 2026",
-    folderColor: "from-[#2a2a2a] to-[#171717]",
-    accentColor: "bg-[#0f0f0f]",
-  },
-  {
-    quote: "The automated WhatsApp AI agent powered by OpenClaw was configured cleanly and runs localized smoothly.",
-    name: "AI Project Client",
-    role: "Automation Client",
-    date: "MAY 2026",
-    folderColor: "from-[#1e40af] to-[#1e3a8a]",
+    quote: "Working remotely with Basharat was seamless. He delivered a flawless real-time race tracking system with live weather and social integration that our club members in Greece absolutely love.",
+    name: "Yarana Nal Baharan",
+    role: "International Client (Greece)",
+    date: "JANUARY 2025",
+    folderColor: "from-[#1a365d] to-[#1e3a8a]",
     accentColor: "bg-[#172554]",
+  },
+  {
+    quote: "We struggled with bloated off-the-shelf themes until Basharat built our custom Urdu news portal. The RTL typography is perfect, and the live breaking news ticker handles our high traffic effortlessly.",
+    name: "ABS24 News Network",
+    role: "Editorial Team",
+    date: "MARCH 2025",
+    folderColor: "from-[#742a2a] to-[#9b2c2c]",
+    accentColor: "bg-[#450a0a]",
+  },
+  {
+    quote: "Managing our massive flying tournaments used to be a nightmare of manual calculations. Basharat's automated tracking system completely transformed our operations, providing instant, error-free leaderboards.",
+    name: "Shoq Ki Baat",
+    role: "Tournament Organizers",
+    date: "FEBRUARY 2025",
+    folderColor: "from-[#975a16] to-[#744210]",
+    accentColor: "bg-[#451a03]",
   },
 ];
 

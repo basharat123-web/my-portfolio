@@ -56,10 +56,11 @@ export default function Navbar() {
         >
           <HoverRoll>Contact Me</HoverRoll>
         </a>
+
       </div>
 
-      {/* Floating Sound Toggle Button on Bottom-Right Side */}
-      <div className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 z-50">
+      {/* Floating Sound Toggle Button on Top-Right Side (DESKTOP ONLY) */}
+      <div className="hidden md:block fixed top-4 sm:top-6 right-4 sm:right-6 z-[60]">
         <button
           onClick={handleSoundToggle}
           className="rounded-full bg-fg text-bg px-3.5 py-2 text-xs font-mono shadow-2xl border border-white/20 hover:scale-105 transition-all flex items-center gap-2 cursor-pointer backdrop-blur-md"
@@ -73,36 +74,47 @@ export default function Navbar() {
       {/* 2. MOBILE NAVBAR: Sleek Compact Pill with Floating Dropdown Box */}
       <div className="md:hidden flex flex-col items-center w-full max-w-[340px]">
         {/* Main Floating Mobile Pill */}
-        <div className="w-full flex items-center justify-between gap-3 rounded-full bg-fg text-bg px-4 py-2 shadow-2xl border border-white/10">
+        <div className="w-full flex items-center justify-between gap-3 rounded-full bg-fg text-bg pl-4 pr-2 py-2 shadow-2xl border border-white/10">
           <a
             href="/#top"
             className="flex items-center gap-2 text-sm font-bold tracking-tight whitespace-nowrap"
           >
             <img src="/logo.png" alt="BH Logo" className="w-6 h-6 rounded-full bg-white p-0.5 object-contain shadow-sm" />
-            <span>Basharat Hussain</span>
+            <span>Basharat</span>
           </a>
 
-          {/* Toggle Button for Dropdown */}
-          <button
-            onClick={() => setIsOpen((prev) => !prev)}
-            className="w-8 h-8 rounded-full bg-bg/20 text-bg flex items-center justify-center hover:bg-bg/30 transition-colors cursor-pointer"
-            aria-label={isOpen ? "Close Menu" : "Open Menu"}
-          >
-            <motion.div
-              animate={{ rotate: isOpen ? 90 : 0 }}
-              transition={{ duration: 0.25 }}
-              className="flex flex-col gap-1 items-center justify-center"
+          <div className="flex items-center gap-1.5">
+            {/* Integrated Mobile Sound Toggle Button */}
+            <button
+              onClick={handleSoundToggle}
+              className="w-8 h-8 rounded-full bg-bg/20 text-bg flex items-center justify-center hover:bg-bg/30 transition-colors cursor-pointer"
+              title={soundOn ? "Mute Sound Effects" : "Enable Sound Effects"}
             >
-              {isOpen ? (
-                <span className="text-lg leading-none font-bold">&times;</span>
-              ) : (
-                <>
-                  <span className="w-4 h-0.5 bg-bg rounded-full" />
-                  <span className="w-4 h-0.5 bg-bg rounded-full" />
-                </>
-              )}
-            </motion.div>
-          </button>
+              <span className="text-sm">{soundOn ? "🔊" : "🔇"}</span>
+            </button>
+
+            {/* Toggle Button for Dropdown */}
+            <button
+              onClick={() => setIsOpen((prev) => !prev)}
+              className="w-8 h-8 rounded-full bg-bg/20 text-bg flex items-center justify-center hover:bg-bg/30 transition-colors cursor-pointer"
+              aria-label={isOpen ? "Close Menu" : "Open Menu"}
+            >
+              <motion.div
+                animate={{ rotate: isOpen ? 90 : 0 }}
+                transition={{ duration: 0.25 }}
+                className="flex flex-col gap-1 items-center justify-center"
+              >
+                {isOpen ? (
+                  <span className="text-lg leading-none font-bold">&times;</span>
+                ) : (
+                  <>
+                    <span className="w-4 h-0.5 bg-bg rounded-full" />
+                    <span className="w-4 h-0.5 bg-bg rounded-full" />
+                  </>
+                )}
+              </motion.div>
+            </button>
+          </div>
         </div>
 
         {/* Compact Dropdown Box */}
@@ -124,7 +136,7 @@ export default function Navbar() {
                     className="w-full rounded-xl px-4 py-2.5 text-xs font-semibold hover:bg-bg/20 transition-colors flex items-center justify-between text-left"
                   >
                     <HoverRoll>{link.label}</HoverRoll>
-                    <span className="text-muted/60 text-[10px]">→</span>
+                    <span className="text-muted/60 text-[10px]">↗</span>
                   </a>
                 )
               )}

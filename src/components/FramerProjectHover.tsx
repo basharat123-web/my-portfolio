@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import HoverRoll from "./HoverRoll";
 
 interface ProjectItem {
   id: string;
@@ -19,7 +20,7 @@ const PROJECTS: ProjectItem[] = [
     id: "01",
     number: "01",
     title: "Yarana",
-    subtitle: "Real-Time Pigeon Race Tracking • Greece 🇬🇷",
+    subtitle: "Real-Time Pigeon Race Tracking",
     slug: "yarana-nal-baharan-pigeon-club",
     image: "/projects/yarana/screenshot-1.jpg",
   },
@@ -27,7 +28,7 @@ const PROJECTS: ProjectItem[] = [
     id: "02",
     number: "02",
     title: "ABS24 News",
-    subtitle: "Custom PHP Urdu News Portal & Live Ticker",
+    subtitle: "Custom PHP Urdu News Portal",
     slug: "abs24-news-portal",
     image: "/projects/abs24-news-portal/screenshot-1.jpg",
   },
@@ -35,155 +36,142 @@ const PROJECTS: ProjectItem[] = [
     id: "03",
     number: "03",
     title: "Axiom",
-    subtitle: "Corporate Market Analytics & Survey Portal",
+    subtitle: "Market Analytics & Survey Portal",
     slug: "axiom-research-group",
-    image: "/projects/yarana/screenshot-3.jpg",
+    image: "/projects/axiom-research-group/screenshot-1.png",
   },
   {
     id: "04",
     number: "04",
     title: "Shoq Ki Baat",
-    subtitle: "Live Tournament Leaderboard System",
+    subtitle: "Live Tournament Leaderboard",
     slug: "shoq-ki-baat-live-tracking",
-    image: "/projects/yarana/screenshot-4.jpg",
-  },
-  {
-    id: "05",
-    number: "05",
-    title: "OpenClaw AI",
-    subtitle: "WhatsApp Automation & Localized LLM Agent",
-    slug: "autonomous-ai-assistant-openclaw",
-    image: "/projects/yarana/screenshot-5.jpg",
-  },
-  {
-    id: "06",
-    number: "06",
-    title: "BH Tech Hub",
-    subtitle: "Next.js SaaS Migration & Technical SEO",
-    slug: "bh-tech-hub-saas-migration",
-    image: "/projects/yarana/screenshot-6.jpg",
+    image: "/projects/shoq-ki-baat-live-tracking/screenshot-1.png",
   },
 ];
+
+// Sound Effect Utility using Web Audio API
+const playHoverSound = () => {
+  if (typeof window === "undefined") return;
+  try {
+    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gainNode = ctx.createGain();
+    
+    // Soft elegant UI tick sound
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(800, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.05);
+    
+    gainNode.gain.setValueAtTime(0.1, ctx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+    
+    osc.connect(gainNode);
+    gainNode.connect(ctx.destination);
+    
+    osc.start();
+    osc.stop(ctx.currentTime + 0.05);
+  } catch(e) {
+    // Ignore audio context errors (e.g. if browser blocks before interaction)
+  }
+};
 
 export default function FramerProjectHover() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const activeProject = PROJECTS[activeIndex];
 
+  const handleHover = (index: number) => {
+    if (activeIndex !== index) {
+      playHoverSound();
+      setActiveIndex(index);
+    }
+  };
+
   return (
-    <div className="relative w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-black border border-border shadow-2xl min-h-[540px] sm:min-h-[600px] flex flex-col justify-between select-none">
-      {/* Full-Bleed Dynamic Background Image Layer (Spans full component) */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeProject.id}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.02 }}
-            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={activeProject.image}
-              alt={activeProject.title}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-top"
-            />
-            {/* Dark Gradient Overlay for Readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-          </motion.div>
-        </AnimatePresence>
+    <div className="relative w-full py-4 sm:py-8 lg:py-12">
+      {/* Forced Side-by-Side Grid Layout for ALL screen sizes */}
+      <div className="relative z-10 grid h-full grid-cols-[40%_60%] sm:grid-cols-[38%_62%] lg:grid-cols-[35%_65%] gap-2 sm:gap-6 lg:gap-12 items-center w-full">
+        
+        {/* Left Side: Tabs */}
+        <div className="flex flex-col justify-center py-2 sm:py-8 pl-1 pr-0 sm:pl-4 sm:pr-2 lg:pl-10">
+          <div className="space-y-1 sm:space-y-2">
+            {PROJECTS.map((project, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <motion.div
+                  layout
+                  key={project.id}
+                  onMouseEnter={() => handleHover(index)}
+                  onClick={() => handleHover(index)}
+                  initial={false}
+                  animate={{ 
+                    x: isActive ? (typeof window !== 'undefined' && window.innerWidth < 640 ? 4 : 10) : 0,
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  className={`group cursor-pointer flex flex-col px-3 py-3 sm:px-6 sm:py-4 transition-colors duration-300 ${
+                    isActive
+                      ? "bg-slate-200/70 backdrop-blur-md text-slate-900 rounded-l-xl sm:rounded-l-2xl rounded-r-none -mr-4 sm:-mr-8 lg:-mr-12 relative z-20 shadow-[-5px_0_15px_rgba(0,0,0,0.03)] lg:shadow-[-10px_0_20px_rgba(0,0,0,0.03)]"
+                      : "bg-transparent text-slate-900 hover:bg-slate-200/40 rounded-xl sm:rounded-2xl"
+                  }`}
+                >
+                  <div className="flex w-full items-center justify-between">
+                    <span className={`text-[11px] min-[400px]:text-xs sm:text-lg lg:text-2xl font-bold tracking-tight transition-colors`}>
+                      {project.title}
+                    </span>
+                  </div>
 
-        {/* Top-Right Expand Icon Button */}
-        <div className="absolute top-6 right-6 z-20 flex items-center justify-end">
-          <Link
-            href={`/work/${activeProject.slug}`}
-            className="w-10 h-10 rounded-xl bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all shadow-lg"
-          >
-            ↗
-          </Link>
-        </div>
-
-        {/* Bottom Project Title Banner */}
-        <div className="absolute bottom-6 right-6 left-6 md:left-[42%] z-20 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div>
-            <span className="text-[10px] font-mono tracking-widest text-white/70 uppercase block mb-1">
-              CASE STUDY ({activeProject.number})
-            </span>
-            <h4 className="text-xl sm:text-3xl font-bold text-white leading-tight">
-              {activeProject.title}
-            </h4>
-            <p className="text-xs text-white/80 font-medium mt-1">
-              {activeProject.subtitle}
-            </p>
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                        animate={{ opacity: 1, height: "auto", marginTop: 4 }}
+                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="text-[9px] sm:text-xs lg:text-sm font-medium leading-relaxed text-slate-600 max-w-[95%]">
+                          {project.subtitle}
+                        </p>
+                        <Link
+                          href={`/work/${project.slug}`}
+                          className="mt-2 sm:mt-4 inline-flex items-center gap-1 text-[8px] sm:text-xs font-bold uppercase tracking-widest text-slate-900 hover:text-black transition-colors"
+                        >
+                          <span className="border-b border-slate-900 pb-0.5"><HoverRoll>View Case Study</HoverRoll></span>
+                          <span className="text-[10px] sm:text-sm">↗</span>
+                        </Link>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
           </div>
-
-          <Link
-            href={`/work/${activeProject.slug}`}
-            className="inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-2.5 text-xs font-semibold hover:bg-accent transition-colors shadow-md shrink-0"
-          >
-            View Project Details →
-          </Link>
         </div>
-      </div>
 
-      {/* LEFT NAVIGATION MENU STACK WITH HORIZONTAL EXPAND/SLIDE MOTION (Exact match to Framer screenshot!) */}
-      <div className="relative z-20 w-full md:w-[44%] lg:w-[38%] flex flex-col h-full items-start divide-y divide-black/10">
-        {PROJECTS.map((project, idx) => {
-          const isActive = activeIndex === idx;
-
-          return (
+        {/* Right Side: Image */}
+        <div className="relative w-full aspect-[4/3] sm:aspect-video rounded-xl sm:rounded-[24px] overflow-hidden bg-transparent shadow-sm border border-slate-200/50 z-10">
+          <AnimatePresence mode="wait">
             <motion.div
-              key={project.id}
-              onMouseEnter={() => setActiveIndex(idx)}
-              onClick={() => setActiveIndex(idx)}
-              animate={{
-                width: isActive ? "100%" : "62%",
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 280,
-                damping: 26,
-              }}
-              className={`relative p-5 sm:p-6 cursor-pointer flex flex-col justify-between rounded-r-2xl transition-colors duration-300 shadow-md ${
-                isActive
-                  ? "bg-white text-black z-30 font-semibold"
-                  : "bg-white/90 text-black/60 hover:bg-white hover:text-black z-10"
-              }`}
+              key={activeProject.id}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.02 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="absolute inset-0 w-full h-full"
             >
-              <div>
-                {/* Number */}
-                <span className="text-[11px] font-mono text-black/40 block mb-1">
-                  {project.number}
-                </span>
-
-                {/* Title & Arrow */}
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-xl sm:text-2xl font-serif tracking-tight text-black font-semibold truncate">
-                    {project.title}
-                  </h3>
-
-                  {isActive && (
-                    <motion.span
-                      initial={{ opacity: 0, x: -8 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="text-base text-black/60 font-sans shrink-0"
-                    >
-                      →
-                    </motion.span>
-                  )}
-                </div>
-              </div>
-
-              {isActive && (
-                <p className="text-[11px] font-sans text-black/60 mt-2 line-clamp-1">
-                  {project.subtitle}
-                </p>
-              )}
+              <Image
+                src={activeProject.image}
+                alt={activeProject.title}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 65vw"
+                className="object-contain object-center"
+              />
             </motion.div>
-          );
-        })}
+          </AnimatePresence>
+        </div>
+
       </div>
     </div>
   );
